@@ -18,13 +18,13 @@ public class Boneyard {
     }
 
     /** @return total number of dominos*/
-    public int totalDominos() {
+    public int totalDomino() {
         return boneyardList.size();
     }
 
     /**
      * @param index is the index of the domino
-     * @return dominos of the given specific index */
+     * @return domino of the given specific index */
     public Dominos getDominos(int index) {
         return boneyardList.get(index);
     }
@@ -39,4 +39,7 @@ public class Boneyard {
         return boneyardList.size() <= 0;
     }
 
+    public int boneyardSize() {
+        return boneyardList.size();
+    }
 }
