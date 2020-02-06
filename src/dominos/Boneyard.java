@@ -1,0 +1,42 @@
+package dominos;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Boneyard {
+
+    private List<Dominos> boneyardList = new ArrayList<>();
+
+    /* index of j starts from i because we only need items from upper triangular matrix*/
+    public Boneyard() {
+        for (int i = 0; i < 7; i++){
+            for (int j = i; j < 7; j++){
+                Dominos dominos = new Dominos(i, j);
+                boneyardList.add(dominos);
+            }
+        }
+    }
+
+    /** @return total number of dominos*/
+    public int totalDominos() {
+        return boneyardList.size();
+    }
+
+    /**
+     * @param index is the index of the domino
+     * @return dominos of the given specific index */
+    public Dominos getDominos(int index) {
+        return boneyardList.get(index);
+    }
+
+    /** @param  index removes domino at the given index*/
+    public void deleteDomino(int index) {
+        boneyardList.remove(index);
+    }
+
+    /** @return true if the size of the boneyard is 0 or less*/
+    public boolean isEmpty() {
+        return boneyardList.size() <= 0;
+    }
+
+}
