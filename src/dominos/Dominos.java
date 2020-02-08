@@ -25,5 +25,4 @@ public class Dominos {
         right = temp;
 
     }
-
 }
