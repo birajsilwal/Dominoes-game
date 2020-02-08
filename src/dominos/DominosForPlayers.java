@@ -1,8 +1,6 @@
 package dominos;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class DominosForPlayers {
 
@@ -21,7 +19,6 @@ public class DominosForPlayers {
     /** @return size of the dominos of player*/
     public int getSizeOfDominosForPlayer() {
         return dominosOfPlayer.size();
-
     }
 
     // create dominos method to pass domino to board

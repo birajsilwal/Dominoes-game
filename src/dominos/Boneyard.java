@@ -1,6 +1,7 @@
 package dominos;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Boneyard {
@@ -15,6 +16,8 @@ public class Boneyard {
                 boneyardList.add(dominos);
             }
         }
+        /* this shuffles all the dominos */
+        Collections.shuffle(boneyardList);
     }
 
     /** @return total number of dominos*/
