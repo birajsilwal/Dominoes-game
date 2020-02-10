@@ -45,4 +45,11 @@ public class Boneyard {
     public int boneyardSize() {
         return boneyardList.size();
     }
+
+    /* this method is used to get domino from boneyard if needed */
+    public void drawFromBoneyard() {
+        if (boneyardList.size() >= 1)
+            getDominos(0);
+            boneyardList.remove(0);
+    }
 }

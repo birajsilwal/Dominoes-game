@@ -9,6 +9,12 @@ public class Players {
 
     }
 
+    public void humanPlayer() {
 
+    }
+
+    public void computerPlayer() {
+
+    }
 
 }
