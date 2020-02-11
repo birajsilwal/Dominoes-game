@@ -25,12 +25,23 @@ public class Boneyard {
         return boneyardList.size();
     }
 
+
+
+
+
     /**
      * @param index is the index of the domino
      * @return domino of the given specific index */
     public Dominos getDominos(int index) {
-        return boneyardList.get(index);
+        Dominos d = boneyardList.get(index);
+        boneyardList.remove(index);
+        return d;
     }
+
+
+
+
+    public List<Dominos> getAllDominos() { return boneyardList; }
 
     /** @param  index removes domino at the given index*/
     public void deleteDomino(int index) {
