@@ -15,10 +15,17 @@ public class Board {
 
     public List<Dominos> trayDomino() {
         for (int i = 0; i < 6; i++) {
-            trayDomino.add(new DominosForPlayers().getSelectedDomino(i));
+            trayDomino.add(new Boneyard().getSelectedDomino(i));
         }
         return trayDomino;
     }
+
+
+
+
+
+
+
 
 
     /** @param dominos

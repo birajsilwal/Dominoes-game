@@ -25,15 +25,12 @@ public class DominosForPlayers {
 
 
 
-    /** @return size of the dominos of player*/
-    public int getSizeOfDominosForPlayer() {
-        return dominosOfPlayer.size();
-    }
 
 
-    public Dominos getSelectedDomino(int index) {
-        return dominosOfPlayer.get(index);
-    }
+//    /** @return size of the dominos of player*/
+//    public int getSizeOfDominosForPlayer() {
+//        return dominosOfPlayer.size();
+//    }
 
 
 

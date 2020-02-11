@@ -3,10 +3,13 @@ package dominos;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class Boneyard {
 
     private List<Dominos> boneyardList = new ArrayList<>();
+    private List<Dominos> handsForPlayer = new ArrayList<>();
+
 
     /* index of j starts from i because we only need items from upper triangular matrix*/
     public Boneyard() {
@@ -16,13 +19,22 @@ public class Boneyard {
                 boneyardList.add(dominos);
             }
         }
-        /* this shuffles all the dominos */
         Collections.shuffle(boneyardList);
     }
 
-    /** @return total number of dominos*/
-    public int totalDomino() {
-        return boneyardList.size();
+
+    public List<Dominos> handsForPlayer() {
+        Boneyard boneyard = new Boneyard();
+        for (int i = 0; i < 7; i++) {
+            int rand = new Random().nextInt(boneyard.boneyardSize());
+            handsForPlayer.add(boneyard.getDominos(rand));
+        }
+        return handsForPlayer;
+    }
+
+
+    public Dominos getSelectedDomino(int index) {
+        return handsForPlayer.get(index);
     }
 
 
@@ -39,21 +51,20 @@ public class Boneyard {
     }
 
 
-
     public List<Dominos> getAllDominos() { return boneyardList; }
 
 
 
 
 
-    /** @return true if the size of the boneyard is 0 or less*/
-    public boolean isEmpty() {
-        return boneyardList.size() <= 0;
-    }
+
+
+
 
     public int boneyardSize() {
         return boneyardList.size();
     }
+
 
     /* this method is used to get domino from boneyard if needed */
     public void drawFromBoneyard() {
@@ -61,4 +72,10 @@ public class Boneyard {
             getDominos(0);
             boneyardList.remove(0);
     }
+
+    /** @return true if the size of the boneyard is 0 or less*/
+    public boolean isEmpty() {
+        return boneyardList.size() <= 0;
+    }
+
 }

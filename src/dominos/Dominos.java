@@ -23,6 +23,10 @@ public class Dominos {
         int temp = left;
         left = right;
         right = temp;
+    }
 
+    /* String type method to change dominos into string */
+    public String toString() {
+        return "[" + getRight() + ", " + getLeft() + "]";
     }
 }
