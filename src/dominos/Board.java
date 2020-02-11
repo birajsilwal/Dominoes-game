@@ -12,6 +12,15 @@ public class Board {
 
     List<Dominos> trayDomino = new ArrayList<>();
 
+
+    public List<Dominos> trayDomino() {
+        for (int i = 0; i < 6; i++) {
+            trayDomino.add(new DominosForPlayers().getSelectedDomino(i));
+        }
+        return trayDomino;
+    }
+
+
     /** @param dominos
      * this method checks if left/right number of the domino is equal to
      * left/right of the dominos in tray */

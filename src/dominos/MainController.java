@@ -1,7 +1,5 @@
 package dominos;
 
-import java.util.Arrays;
-
 public class MainController {
 
     private Boneyard boneyard;
@@ -13,10 +11,13 @@ public class MainController {
     public void startGame() {
         boneyard = new Boneyard();
         board = new Board();
-
     }
 
     public static void main(String[] args) {
+
+//        for (Dominos d : new Boneyard().getAllDominos()) {
+//            System.out.println((d.getLeft() + " , " + d.getRight()));
+//        }
 
 //        for (Dominos d : new Boneyard().getAllDominos()) {
 //            System.out.println((d.getLeft() + " , " + d.getRight()));
@@ -31,12 +32,23 @@ public class MainController {
 //
 //        }
 
-        System.out.print("Tray: ");
-          for (int i = 0; i < 8; i++) {
-              for (Dominos dominos : new DominosForPlayers().getDominosForPlayer()) {
-                  System.out.print(("[" + dominos.getLeft() + ", " + dominos.getRight() + "] "));
-              }
-          }
+
+//        System.out.print("Human's Tray: ");
+//          for (int i = 0; i < 7; i++) {
+//              for (Dominos dominos : new DominosForPlayers().getDominosForPlayer()) {
+//                  System.out.print(("[" + dominos.getLeft() + ", " + dominos.getRight() + "] "));
+//              }
+//          }
+
+        System.out.println("Tray domino: ");
+        for (int i = 0; i < 7; i++) {
+            for (Dominos dominos : new Board().trayDomino()) {
+                System.out.print(("[" + dominos.getLeft() + ", " + dominos.getRight() + "] "));
+            }
+        }
+
+
+        new Players().humanPlayer();
 
     }
 }

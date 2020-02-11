@@ -34,19 +34,17 @@ public class Boneyard {
      * @return domino of the given specific index */
     public Dominos getDominos(int index) {
         Dominos d = boneyardList.get(index);
-        boneyardList.remove(index);
+        boneyardList.remove(d);
         return d;
     }
 
 
 
-
     public List<Dominos> getAllDominos() { return boneyardList; }
 
-    /** @param  index removes domino at the given index*/
-    public void deleteDomino(int index) {
-        boneyardList.remove(index);
-    }
+
+
+
 
     /** @return true if the size of the boneyard is 0 or less*/
     public boolean isEmpty() {
