@@ -24,30 +24,25 @@ public class Boneyard {
 
 
     public List<Dominos> handsForPlayer() {
-        Boneyard boneyard = new Boneyard();
+
         for (int i = 0; i < 7; i++) {
-            int rand = new Random().nextInt(boneyard.boneyardSize());
-            handsForPlayer.add(boneyard.getDominos(rand));
+            int rand = new Random().nextInt(getBoneyardSize());
+            handsForPlayer.add(getDominos(rand));
         }
         return handsForPlayer;
     }
-
 
     public Dominos getSelectedDomino(int index) {
         return handsForPlayer.get(index);
     }
 
-
-
-
-
     /**
      * @param index is the index of the domino
      * @return domino of the given specific index */
     public Dominos getDominos(int index) {
-        Dominos d = boneyardList.get(index);
-        boneyardList.remove(d);
-        return d;
+//        Dominos d = boneyardList.get(index);
+//        boneyardList.remove(d);
+        return boneyardList.remove(index);
     }
 
 
@@ -58,10 +53,7 @@ public class Boneyard {
 
 
 
-
-
-
-    public int boneyardSize() {
+    public int getBoneyardSize() {
         return boneyardList.size();
     }
 

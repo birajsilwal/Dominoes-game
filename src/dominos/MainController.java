@@ -15,23 +15,6 @@ public class MainController {
 
     public static void main(String[] args) {
 
-        Boneyard boneyard1 = new Boneyard();
-        DominosForPlayers humanPlayer = new DominosForPlayers();
-
-//        for (int i = 0; i < 8; i++) {
-//                boneyard1.handsForPlayer();
-//        }
-
-
-        System.out.print("Human's Dominos: ");
-//          for (int i = 0; i < 7; i++) {
-//              for (Dominos dominos : new DominosForPlayers().getDominosForPlayer()) {
-//                  System.out.print(("[" + dominos.getLeft() + ", " + dominos.getRight() + "] "));
-//              }
-//          }
-
-
-
         new Players().humanPlayer();
 
     }
