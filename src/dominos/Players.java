@@ -11,7 +11,6 @@ public class Players {
     private List<Dominos> humanHand;
     private List<Dominos> computerHand;
     private List<Dominos> playedDomino = new ArrayList<>();
-    private boolean currentTurn = true;
 
     public Players() {
         humanHand = boneyard.handsForPlayer();
@@ -51,7 +50,6 @@ public class Players {
             if (playedDomino.get(sizeOfPlayedDomino-1).getRight() == tempRight ||  playedDomino.get(sizeOfPlayedDomino-1).getRight() == tempLeft){
                 playedDomino.add(computerHand.remove(i));
             }
-
         }
 
         System.out.println("Computer's Turn");
@@ -66,7 +64,7 @@ public class Players {
 
         if (input.equals("p")) {
             System.out.println("Which domino?");
-            p();
+            play();
         }
         else if (input.equals("d")) {
             System.out.println("Draw");
@@ -76,7 +74,7 @@ public class Players {
         }
     }
 
-    public void p() {
+    public void play() {
         System.out.println("Enter a number: ");
         Scanner scanner = new Scanner(System.in);
         int input =  scanner.nextInt();
@@ -86,9 +84,6 @@ public class Players {
         System.out.println("Boneyard contains " + boneyard.getBoneyardSize() + " Dominos.");
 
         System.out.println(playedDomino + "\n");
-//        currentTurn = false;
-//        humanPlayer();
-
     }
 
     public void addToPlayedDomino(int index) {

@@ -1,6 +1,5 @@
 package dominos;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Dominos {
@@ -20,10 +19,6 @@ public class Dominos {
     public int getLeft() {
         return left;
     }
-
-//    public int setRight() {
-//
-//    }
 
     /* flips left and right elements i.e. [a, b] --> [b, a] */
     public void flipDomino(List<Dominos> dominos, int index) {
