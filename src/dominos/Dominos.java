@@ -26,9 +26,9 @@ public class Dominos {
 //    }
 
     /* flips left and right elements i.e. [a, b] --> [b, a] */
-    public void flipDomino(List<Dominos> dominos) {
-        int temp = getLeft();
-        left = getRight();
+    public void flipDomino(List<Dominos> dominos, int index) {
+        int temp = dominos.get(index).getLeft();
+        left = dominos.get(index).getRight();
         right = temp;
     }
 

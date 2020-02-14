@@ -38,20 +38,17 @@ public class Players {
             Dominos computerDomino = computerHand.get(i);
             int tempLeft = computerDomino.getLeft();
             int tempRight = computerDomino.getRight();
-            int sizeofplayeddomino = playedDomino.size();
+            int sizeOfPlayedDomino = playedDomino.size();
 
 //            if(playedDomino.get(0).getLeft() == tempLeft) {
 //
 //            }
-//
-//
-//
+
 //            if(playedDomino.get(0).getRight() == tempRight){
 //
 //            }
 
-
-            if (playedDomino.get(sizeofplayeddomino-1).getRight() == tempRight ||  playedDomino.get(sizeofplayeddomino-1).getRight() == tempLeft){
+            if (playedDomino.get(sizeOfPlayedDomino-1).getRight() == tempRight ||  playedDomino.get(sizeOfPlayedDomino-1).getRight() == tempLeft){
                 playedDomino.add(computerHand.remove(i));
             }
 
@@ -74,6 +71,9 @@ public class Players {
         else if (input.equals("d")) {
             System.out.println("Draw");
         }
+        else if (input.equals("q")) {
+            quit();
+        }
     }
 
     public void p() {
@@ -81,13 +81,12 @@ public class Players {
         Scanner scanner = new Scanner(System.in);
         int input =  scanner.nextInt();
         System.out.println("Playing " + humanHand.get(input));
-//        playedDomino.add(humanHand.remove(input));
 
         addToPlayedDomino(input);
         System.out.println("Boneyard contains " + boneyard.getBoneyardSize() + " Dominos.");
 
         System.out.println(playedDomino + "\n");
-        currentTurn = false;
+//        currentTurn = false;
 //        humanPlayer();
 
     }
@@ -96,15 +95,19 @@ public class Players {
         playedDomino.add(humanHand.remove(index));
     }
 
+    public void flipOrNot() {
+        int index = 1;
+        System.out.println("Do you want to flip the domino?");
+        Scanner scanner1 = new Scanner(System.in);
+        String flipOrNot = scanner1.nextLine();
 
+        if (flipOrNot.equals("yes")){
+            dominos.flipDomino(playedDomino, index);
+        }
+    }
+
+    public void quit() {
+        System.out.println("Thank you for playing this game.");
+        System.exit(0);
+    }
 }
-
-
-
-//        System.out.println("Do you want to flip the domino?");
-//        Scanner scanner1 = new Scanner(System.in);
-//        String ans = scanner1.nextLine();
-//
-//        if (ans.equals("yes")){
-//            dominos.flipDomino(playedDomino);
-//        }
