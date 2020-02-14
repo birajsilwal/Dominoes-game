@@ -10,7 +10,6 @@ public class Boneyard {
     private List<Dominos> boneyardList = new ArrayList<>();
     private List<Dominos> handsForPlayer = new ArrayList<>();
 
-
     /* index of j starts from i because we only need items from upper triangular matrix*/
     public Boneyard() {
         for (int i = 0; i < 7; i++){
@@ -22,9 +21,7 @@ public class Boneyard {
         Collections.shuffle(boneyardList);
     }
 
-
     public List<Dominos> handsForPlayer() {
-
         for (int i = 0; i < 7; i++) {
             int rand = new Random().nextInt(getBoneyardSize());
             handsForPlayer.add(getDominos(rand));
@@ -39,24 +36,11 @@ public class Boneyard {
     /**
      * @param index is the index of the domino
      * @return domino of the given specific index */
-    public Dominos getDominos(int index) {
-//        Dominos d = boneyardList.get(index);
-//        boneyardList.remove(d);
-        return boneyardList.remove(index);
-    }
-
+    public Dominos getDominos(int index) { return boneyardList.remove(index); }
 
     public List<Dominos> getAllDominos() { return boneyardList; }
 
-
-
-
-
-
-    public int getBoneyardSize() {
-        return boneyardList.size();
-    }
-
+    public int getBoneyardSize() { return boneyardList.size(); }
 
     /* this method is used to get domino from boneyard if needed */
     public void drawFromBoneyard() {
@@ -69,5 +53,4 @@ public class Boneyard {
     public boolean isEmpty() {
         return boneyardList.size() <= 0;
     }
-
 }

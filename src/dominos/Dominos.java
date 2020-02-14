@@ -1,5 +1,6 @@
 package dominos;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Dominos {
@@ -7,7 +8,7 @@ public class Dominos {
     private int right;
     private int left;
 
-    public Dominos (int right, int left) {
+    public Dominos (int left, int right) {
         this.left = left;
         this.right = right;
     }
@@ -33,6 +34,7 @@ public class Dominos {
 
     /* String type method to change dominos into string */
     public String toString() {
-        return "[" + getRight() + ", " + getLeft() + "]";
+        return "[" + getLeft() + ", " + getRight() + "]";
     }
+
 }
