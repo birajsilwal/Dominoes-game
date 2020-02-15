@@ -12,7 +12,6 @@ public class Board {
 
     List<Dominos> trayDomino = new ArrayList<>();
 
-
     public List<Dominos> trayDomino() {
         for (int i = 0; i < 6; i++) {
             trayDomino.add(new Boneyard().getSelectedDomino(i));

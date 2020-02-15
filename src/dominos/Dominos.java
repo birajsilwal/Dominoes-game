@@ -1,7 +1,5 @@
 package dominos;
 
-import java.util.List;
-
 public class Dominos {
 
     private int right;
@@ -21,9 +19,9 @@ public class Dominos {
     }
 
     /* flips left and right elements i.e. [a, b] --> [b, a] */
-    public void flipDomino(List<Dominos> dominos, int index) {
-        int temp = dominos.get(index).getLeft();
-        left = dominos.get(index).getRight();
+    public void flipDomino() {
+        int temp = left;
+        left = right;
         right = temp;
     }
 

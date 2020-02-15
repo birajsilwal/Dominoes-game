@@ -7,8 +7,8 @@ import java.util.Random;
 
 public class Boneyard {
 
+    List<Dominos> handsForPlayer;
     private List<Dominos> boneyardList = new ArrayList<>();
-    private List<Dominos> handsForPlayer = new ArrayList<>();
 
     /* index of j starts from i because we only need items from upper triangular matrix*/
     public Boneyard() {
@@ -22,6 +22,8 @@ public class Boneyard {
     }
 
     public List<Dominos> handsForPlayer() {
+        List<Dominos> handsForPlayer = new ArrayList<>();
+
         for (int i = 0; i < 7; i++) {
             int rand = new Random().nextInt(getBoneyardSize());
             handsForPlayer.add(getDominos(rand));
