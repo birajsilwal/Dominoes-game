@@ -1,21 +1,35 @@
 package dominos;
 
-public class MainController {
+import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.scene.Scene;
+import javafx.scene.layout.*;
+import javafx.stage.Stage;
+import static dominos.Constants.*;
 
-    private Boneyard boneyard;
-    private Board board;
-    private Dominos dominos;
-    private Players players;
-    private DominosForPlayers dominosForPlayers;
+public class MainController extends Application {
+    private BorderPane borderPane;
 
-    public void startGame() {
-        boneyard = new Boneyard();
-        board = new Board();
+    public static void main(String[] args) { launch(args); }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        initGUI(primaryStage);
+//        new Players().humanPlayer();
     }
 
-    public static void main(String[] args) {
+    private void initGUI(Stage primaryStage) {
 
-        new Players().humanPlayer();
+        borderPane = new BorderPane();
+        borderPane.setBottom(new Display().buttomPart());
+        borderPane.setBackground(new Background
+                (new BackgroundFill(blueGreen, CornerRadii.EMPTY, Insets.EMPTY)));
 
+        Scene scene = new Scene(borderPane, borderPaneWidth, borderPaneHeight);
+        primaryStage.setTitle("Dominos Game");
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
+
+
 }
