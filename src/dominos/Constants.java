@@ -4,7 +4,7 @@ import javafx.scene.paint.Color;
 
 public interface Constants {
 
-    int hBoxLabelSpacing = 25;
+    int vBoxLabelSpacing = 10;
     int borderPaneWidth = 1300;
     int borderPaneHeight = 800;
     int vBoxPadding = 20;
