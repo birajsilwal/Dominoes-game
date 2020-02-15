@@ -26,9 +26,9 @@ public class Players {
         System.out.println("[p] Play Domino");
         System.out.println("[d] Draw from boneyard");
         System.out.println("[q] Quit");
-        humanCases();
-        computerPlayer();
-        humanPlayer();
+//        humanCases();
+//        computerPlayer();
+//        humanPlayer();
     }
 
     public void computerPlayer() {

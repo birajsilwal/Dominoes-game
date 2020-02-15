@@ -3,7 +3,6 @@ package dominos;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -18,7 +17,7 @@ public class MainController extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         initGUI(primaryStage);
-//        new Players().humanPlayer();
+        new Players().humanPlayer();
     }
 
     private void initGUI(Stage primaryStage) {
@@ -29,6 +28,7 @@ public class MainController extends Application {
                 (new BackgroundFill(yellowGreen, CornerRadii.EMPTY, Insets.EMPTY)));
 
         borderPane = new BorderPane();
+
         borderPane.setBottom(hBox);
         borderPane.setBackground(new Background
                 (new BackgroundFill(blueGreen, CornerRadii.EMPTY, Insets.EMPTY)));

@@ -14,7 +14,6 @@ public class Display {
 
     private int fontSize = 25;
 
-
     public VBox labelPart() {
         Text boneyardDomios = new Text("Boneyard contains __ dominos." );
         boneyardDomios.setFont(new Display().setFontt());
@@ -41,10 +40,11 @@ public class Display {
         return  hBox;
     }
 
-
     /* method to change font style and size*/
     public Font setFontt() {
         return Font.font("Sans", FontWeight.MEDIUM, fontSize);
     }
+
+
 
 }
