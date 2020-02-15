@@ -3,6 +3,9 @@ package dominos;
 import java.util.*;
 
 public class DominosForPlayers {
+    /* this class is currently unused
+    * i have not deleted yet because if in case i need it
+    * i will delete this class after my game runs smoothly*/
 
 //    /* array list to store dominos for players*/
 //    List<Dominos> dominosOfPlayer = new ArrayList<>();

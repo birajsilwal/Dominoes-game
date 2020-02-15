@@ -26,7 +26,7 @@ public class Players {
         System.out.println("[p] Play Domino");
         System.out.println("[d] Draw from boneyard");
         System.out.println("[q] Quit");
-        cases();
+        humanCases();
         computerPlayer();
         humanPlayer();
     }
@@ -37,6 +37,33 @@ public class Players {
         System.out.print("Computer's Tray: ");
         System.out.println(computerHand);
 
+        computerCases();
+
+        System.out.println("Computer's Turn");
+        System.out.println("computer hand size: " + computerHand.size());
+        System.out.println("Played dominos: " + playedDomino + "\n");
+        System.out.println("==================================================");
+    }
+
+    public void humanCases() {
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+
+        switch (input) {
+            case "p":
+                System.out.println("Which domino?");
+                play();
+                break;
+            case "d":
+                System.out.println("Draw");
+                break;
+            case "q":
+                quit();
+                break;
+        }
+    }
+
+    public void computerCases() {
         for (int i = 0; i < computerHand.size(); i++) {
             Dominos computerDomino = computerHand.get(i);
 
@@ -56,34 +83,9 @@ public class Players {
                 playedDomino.add(computerHand.remove(i));
             }
 
-//            if (playedDomino.get(sizeOfPlayedDomino-1).getRight() == tempRight) {
-//
-//            }
-
-
-        }
-
-        System.out.println("Computer's Turn");
-        System.out.println("computer hand size: " + computerHand.size());
-        System.out.println("Played dominos: " + playedDomino + "\n");
-        System.out.println("==================================================");
-    }
-
-    public void cases() {
-        Scanner scanner = new Scanner(System.in);
-        String input = scanner.nextLine();
-
-        switch (input) {
-            case "p":
-                System.out.println("Which domino?");
-                play();
-                break;
-            case "d":
-                System.out.println("Draw");
-                break;
-            case "q":
-                quit();
-                break;
+            if (playedDomino.get(sizeOfPlayedDomino-1).getRight() == tempRight) {
+                playedDomino.add(computerHand.remove(i));
+            }
         }
     }
 
@@ -102,8 +104,6 @@ public class Players {
         if (flipOrNot.equals("yes")){
             dominos.flipDomino();
         }
-
-
 
 
         addToPlayedDomino(input);
