@@ -11,6 +11,7 @@ public class Players {
     private List<Dominos> humanHand;
     private List<Dominos> computerHand;
     private List<Dominos> playedDomino = new ArrayList<>();
+    int input;
 
     public Players() {
         humanHand = boneyard.handsForPlayer();
@@ -26,9 +27,9 @@ public class Players {
         System.out.println("[p] Play Domino");
         System.out.println("[d] Draw from boneyard");
         System.out.println("[q] Quit");
-//        humanCases();
-//        computerPlayer();
-//        humanPlayer();
+        humanCases();
+        computerPlayer();
+        humanPlayer();
     }
 
     public void computerPlayer() {
@@ -92,7 +93,7 @@ public class Players {
     public void play() {
         System.out.println("Enter a number: ");
         Scanner scanner = new Scanner(System.in);
-        int input =  scanner.nextInt();
+        input =  scanner.nextInt();
         System.out.println("Playing " + humanHand.get(input));
 
 //        flipOrNot();
@@ -102,7 +103,7 @@ public class Players {
         String flipOrNot = scanner1.nextLine();
 
         if (flipOrNot.equals("yes")){
-            dominos.flipDomino();
+            humanHand.get(input).flipDomino();
         }
 
 

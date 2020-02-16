@@ -1,14 +1,17 @@
 package dominos;
 
 import javafx.scene.image.Image;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
-public class Dominos {
+public class Dominos extends StackPane {
 
     private int right;
     private int left;
     private Rectangle rectangle;
+
 
 
     /**@param left if left element of the domino and right is right element.*/
@@ -17,15 +20,23 @@ public class Dominos {
         this.right = right;
 
 //        String dominoName = String.format("Resources/dominoImages/%d-%d.jpg", left, right);
-        String dominoName = "Resources/dominoImages/0-0.jpg";
+        String dominoName = "dominoImages/0-0.jpg";
 
-        Image image = new Image(dominoName);
+
+ //       Image image = new Image(dominoName);
 //        ImageView iv = new ImageView(image);
 //        iv.setImage(image);
         Rectangle rectangle = new Rectangle();
-        rectangle.setFill(new ImagePattern(image));
+//        rectangle.setFill(new ImagePattern(image));
+        rectangle.setFill(Color.BLUE);
+        rectangle.setHeight(600);
+        rectangle.setWidth(600);
+        getChildren().add(rectangle);
 
-        this.rectangle = rectangle;
+    }
+
+    public void setRectangle(){
+
     }
 
 
@@ -46,8 +57,8 @@ public class Dominos {
 
     /* flips left and right elements i.e. [a, b] --> [b, a] */
     public void flipDomino() {
-        int temp = left;
-        left = right;
+        int temp = this.getLeft();
+        left = this.getRight();
         right = temp;
     }
 
