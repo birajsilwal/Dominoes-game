@@ -82,10 +82,13 @@ public class Players {
 
             if (playedDomino.get(sizeOfPlayedDomino-1).getRight() == tempLeft) {
                 playedDomino.add(computerHand.remove(i));
+                break;
             }
 
             if (playedDomino.get(sizeOfPlayedDomino-1).getRight() == tempRight) {
+                computerFlip();
                 playedDomino.add(computerHand.remove(i));
+                break;
             }
         }
     }
@@ -96,8 +99,14 @@ public class Players {
         input =  scanner.nextInt();
         System.out.println("Playing " + humanHand.get(input));
 
-//        flipOrNot();
+        flipOrNot();
 
+        addToPlayedDomino(input);
+        System.out.println("Boneyard contains " + boneyard.getBoneyardSize() + " Dominos.");
+        System.out.println("Played dominos: " + playedDomino + "\n");
+    }
+
+    private void flipOrNot() {
         System.out.println("Do you want to flip the domino?");
         Scanner scanner1 = new Scanner(System.in);
         String flipOrNot = scanner1.nextLine();
@@ -105,11 +114,10 @@ public class Players {
         if (flipOrNot.equals("yes")){
             humanHand.get(input).flipDomino();
         }
+    }
 
-
-        addToPlayedDomino(input);
-        System.out.println("Boneyard contains " + boneyard.getBoneyardSize() + " Dominos.");
-        System.out.println("Played dominos: " + playedDomino + "\n");
+    private void computerFlip() {
+            humanHand.get(input).flipDomino();
     }
 
     public void addToPlayedDomino(int index) {
