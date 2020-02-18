@@ -1,10 +1,16 @@
 package dominos;
 
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Players {
+
+    Display display;
 
     Boneyard boneyard = new Boneyard();
     private Dominos dominos;
@@ -18,6 +24,22 @@ public class Players {
         computerHand = boneyard.handsForPlayer();
     }
 
+    public Players(Display display) {
+        this.display = display;
+        humanHand = boneyard.handsForPlayer();
+        computerHand = boneyard.handsForPlayer();
+    }
+
+//    public void drawDomino(Dominos dominos) {
+//    }
+
+    public void drawHumanHand(FlowPane flowPane) {
+        for (Dominos humanHand : humanHand) {
+            humanHand.setRectangle();
+            flowPane.getChildren().add(humanHand);
+        }
+    }
+
     public void humanPlayer() {
         System.out.print("Human's Tray: ");
         System.out.println(humanHand);
@@ -27,9 +49,9 @@ public class Players {
         System.out.println("[p] Play Domino");
         System.out.println("[d] Draw from boneyard");
         System.out.println("[q] Quit");
-        humanCases();
-        computerPlayer();
-        humanPlayer();
+//        humanCases();
+//        computerPlayer();
+//        humanPlayer();
     }
 
     public void computerPlayer() {
