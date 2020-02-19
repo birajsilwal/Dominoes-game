@@ -3,6 +3,7 @@ package dominos;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,13 +31,10 @@ public class Players {
         computerHand = boneyard.handsForPlayer();
     }
 
-//    public void drawDomino(Dominos dominos) {
-//    }
-
-    public void drawHumanHand(FlowPane flowPane) {
+    public void drawHumanHand(VBox vBox) {
         for (Dominos humanHand : humanHand) {
             humanHand.setRectangle();
-            flowPane.getChildren().add(humanHand);
+            vBox.getChildren().add(humanHand);
         }
     }
 

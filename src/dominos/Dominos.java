@@ -28,7 +28,7 @@ public class Dominos extends StackPane {
         Rectangle rectangle = new Rectangle();
         rectangle.setRotate(90);
         rectangle.setFill(new ImagePattern(image));
-        rectangle.setHeight(60);
+        rectangle.setHeight(100);
         rectangle.setWidth(50);
         getChildren().add(rectangle);
     }

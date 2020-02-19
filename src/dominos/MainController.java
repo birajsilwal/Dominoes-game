@@ -10,8 +10,9 @@ import static dominos.Constants.*;
 
 public class MainController extends Application {
     //private BorderPane borderPane;
-    private GridPane borderPane;
     private FlowPane flowPane;
+    private BorderPane borderPane;
+    private VBox vBox;
     private Display display;
     private Dominos dominos;
     private Players humanPlayer = new Players();
@@ -33,24 +34,24 @@ public class MainController extends Application {
         hBox.setBackground(new Background
                 (new BackgroundFill(yellowGreen, CornerRadii.EMPTY, Insets.EMPTY)));
 
-        //borderPane = new BorderPane();
-        flowPane = new FlowPane();
+        vBox = new VBox();
         dominos = new Dominos(1,1);
-//        dominos.setRectangle();
-        humanPlayer.drawHumanHand(flowPane);
-        flowPane.getChildren().add(dominos);
+        humanPlayer.drawHumanHand(vBox);
+        vBox.getChildren().add(dominos);
+        vBox.setPadding(new Insets(10));
+        vBox.setSpacing(-10);
+        vBox.setPrefWidth(200);
+        vBox.setBackground(new Background(new BackgroundFill(yellowOrange, CornerRadii.EMPTY, Insets.EMPTY)));
 
-        AnchorPane anchorPane = new AnchorPane();
-        anchorPane.getChildren().add(flowPane);
+        borderPane = new BorderPane();
+        borderPane.setRight(vBox);
+        borderPane.setBottom(hBox);;
+        borderPane.setBackground(new Background
+        (new BackgroundFill(blueGreen, CornerRadii.EMPTY, Insets.EMPTY)));
 
-//        borderPane.setBackground(new Background
-//                (new BackgroundFill(blueGreen, CornerRadii.EMPTY, Insets.EMPTY)));
-
-        Scene scene = new Scene(anchorPane, borderPaneWidth, borderPaneHeight);
+        Scene scene = new Scene(borderPane, borderPaneWidth, borderPaneHeight);
         primaryStage.setTitle("Dominos Game");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-
-
 }
