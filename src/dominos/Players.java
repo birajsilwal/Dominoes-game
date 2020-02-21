@@ -1,9 +1,7 @@
 package dominos;
 
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.shape.Rectangle;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +33,15 @@ public class Players {
         for (Dominos humanHand : humanHand) {
             humanHand.setRectangle();
             vBox.getChildren().add(humanHand);
+        }
+    }
+
+
+
+    public void drawPlayedDomino(HBox hBox) {
+        for (Dominos playedDominos : playedDomino) {
+            playedDominos.setRectangle();
+            hBox.getChildren().add(playedDominos);
         }
     }
 
@@ -142,6 +149,10 @@ public class Players {
 
     public void addToPlayedDomino(int index) {
         playedDomino.add(humanHand.remove(index));
+    }
+
+    public void addToPlayedDomino1(Rectangle rectangle) {
+        playedDomino.add(dominos);
     }
 
     public void quit() {

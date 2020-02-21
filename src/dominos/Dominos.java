@@ -2,6 +2,7 @@ package dominos;
 
 import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
@@ -11,19 +12,13 @@ public class Dominos extends StackPane {
     private int left;
     private Rectangle rectangle;
 
-
-
     /**@param left if left element of the domino and right is right element.*/
     public Dominos (int left, int right) {
         this.left = left;
         this.right = right;
     }
-
-
-    public void setRectangle(){
+    public void setRectangle() {
         String dominoName = String.format("dominoImages/%d-%d.jpg", left, right);
-//        String dominoName = "dominoImages/6-6.jpg";
-
         Image image = new Image(dominoName);
         Rectangle rectangle = new Rectangle();
         rectangle.setRotate(90);
@@ -31,6 +26,12 @@ public class Dominos extends StackPane {
         rectangle.setHeight(100);
         rectangle.setWidth(50);
         getChildren().add(rectangle);
+
+        this.setOnMouseClicked(event -> {
+            rectangle.setVisible(false);
+            new Players().addToPlayedDomino1(rectangle);
+//            getChildren().add(rectangle);
+        });
     }
 
 

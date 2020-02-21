@@ -44,9 +44,4 @@ public class Display {
     public Font setFontt() {
         return Font.font("Sans", FontWeight.MEDIUM, fontSize);
     }
-
-
-
-
-
 }

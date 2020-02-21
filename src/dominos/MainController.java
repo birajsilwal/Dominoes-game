@@ -15,6 +15,7 @@ public class MainController extends Application {
     private VBox vBox;
     private Display display;
     private Dominos dominos;
+    private Players players = new Players();
     private Players humanPlayer = new Players();
 
     public static void main(String[] args) {
@@ -34,6 +35,7 @@ public class MainController extends Application {
         hBox.setBackground(new Background
                 (new BackgroundFill(yellowGreen, CornerRadii.EMPTY, Insets.EMPTY)));
 
+        // displaying human hand
         vBox = new VBox();
         dominos = new Dominos(1,1);
         humanPlayer.drawHumanHand(vBox);
@@ -43,7 +45,12 @@ public class MainController extends Application {
         vBox.setPrefWidth(200);
         vBox.setBackground(new Background(new BackgroundFill(yellowOrange, CornerRadii.EMPTY, Insets.EMPTY)));
 
+//        FlowPane flowPane = new FlowPane();
+//        players.setPlayedDomino(flowPane);
+//        flowPane.getChildren().add(dominos);
+
         borderPane = new BorderPane();
+        borderPane.setCenter(flowPane);
         borderPane.setRight(vBox);
         borderPane.setBottom(hBox);;
         borderPane.setBackground(new Background
