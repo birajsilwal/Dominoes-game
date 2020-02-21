@@ -31,7 +31,11 @@
 
 ### Bugs
 
-- Program crashes when user tries to flip first domino
-- still flip is not working
 - need to implement more cases for computer
 - need to implement "draw from boneyard" function
+- score do not updates in the GUI
+- played domino do not appears in the GUI
+
+### Screenshot
+
+![](Documents/domino.png)
