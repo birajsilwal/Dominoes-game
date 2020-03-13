@@ -10,10 +10,12 @@ import javafx.scene.text.Text;
 
 import static dominos.Constants.*;
 
+/* this class is responsible for displaying element into the pane */
 public class Display {
 
     private int fontSize = 25;
 
+    /* this method contains label elements */
     public VBox labelPart() {
         Text boneyardDomios = new Text("Boneyard contains __ dominos." );
         boneyardDomios.setFont(new Display().setFontt());
@@ -28,6 +30,7 @@ public class Display {
         return vBox;
     }
 
+    /* this method contains element for the bottom part of the GUI */
     public HBox buttonDraw() {
         Button drawFromBoneyard = new Button();
         drawFromBoneyard.setText("Draw from boneyard");

@@ -1,5 +1,6 @@
 package dominos;
 
+/* Please disregard this class. Currently this class is not in use */
 public class Board {
 
     private int leftOfTray;

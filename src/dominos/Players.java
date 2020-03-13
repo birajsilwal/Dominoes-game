@@ -2,7 +2,6 @@ package dominos;
 
 import javafx.scene.layout.*;
 import javafx.scene.shape.Rectangle;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -23,12 +22,14 @@ public class Players {
         computerHand = boneyard.handsForPlayer();
     }
 
+    /* unused method, please disregard */
     public Players(Display display) {
         this.display = display;
         humanHand = boneyard.handsForPlayer();
         computerHand = boneyard.handsForPlayer();
     }
 
+    /* this method is to update the human hand (human's domino) into the GUI */
     public void drawHumanHand(VBox vBox) {
         for (Dominos humanHand : humanHand) {
             humanHand.setRectangle();
@@ -36,8 +37,7 @@ public class Players {
         }
     }
 
-
-
+    /**@param hBox is used to display all the played dominos*/
     public void drawPlayedDomino(HBox hBox) {
         for (Dominos playedDominos : playedDomino) {
             playedDominos.setRectangle();
@@ -45,6 +45,8 @@ public class Players {
         }
     }
 
+    /*all the instructions and human player logic are in this method\
+    * different cases are used inside this method*/
     public void humanPlayer() {
         System.out.print("Human's Tray: ");
         System.out.println(humanHand);
@@ -59,6 +61,7 @@ public class Players {
 //        humanPlayer();
     }
 
+    /*this method have computer player instructions and cases*/
     public void computerPlayer() {
         System.out.print("Human's Tray: ");
         System.out.println(humanHand);
@@ -73,6 +76,7 @@ public class Players {
         System.out.println("==================================================");
     }
 
+    /* this method have logic for different cases such as play, draw, quit for human player */
     public void humanCases() {
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
@@ -91,6 +95,8 @@ public class Players {
         }
     }
 
+    /* this method have all the logic for computer player
+    * depending on the different situation, computer player chooses dominos tiles*/
     public void computerCases() {
         for (int i = 0; i < computerHand.size(); i++) {
             Dominos computerDomino = computerHand.get(i);
@@ -120,6 +126,7 @@ public class Players {
         }
     }
 
+    /* this method is to play the game */
     public void play() {
         System.out.println("Enter a number: ");
         Scanner scanner = new Scanner(System.in);
@@ -133,6 +140,7 @@ public class Players {
         System.out.println("Played dominos: " + playedDomino + "\n");
     }
 
+    /* option for user if they want to flip their dominos or not */
     private void flipOrNot() {
         System.out.println("Do you want to flip the domino?");
         Scanner scanner1 = new Scanner(System.in);
@@ -143,10 +151,12 @@ public class Players {
         }
     }
 
+    /* upon method call, computer flips the dominos */
     private void computerFlip() {
             humanHand.get(input).flipDomino();
     }
 
+    /* adding played dominos into the array list */
     public void addToPlayedDomino(int index) {
         playedDomino.add(humanHand.remove(index));
     }
@@ -155,6 +165,7 @@ public class Players {
         playedDomino.add(dominos);
     }
 
+    /* method to quit the game */
     public void quit() {
         System.out.println("Thank you for playing this game.");
         System.exit(0);

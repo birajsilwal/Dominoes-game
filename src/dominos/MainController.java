@@ -8,6 +8,8 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import static dominos.Constants.*;
 
+/* this is the main class of the game.
+* this class is responsible for connecting all the other classes */
 public class MainController extends Application {
     //private BorderPane borderPane;
     private FlowPane flowPane;
@@ -28,6 +30,7 @@ public class MainController extends Application {
         initGUI(primaryStage);
     }
 
+    /* GUI starts from here */
     private void initGUI(Stage primaryStage) {
 
         HBox hBox = new HBox(new Display().buttonDraw(), new Display().labelPart());

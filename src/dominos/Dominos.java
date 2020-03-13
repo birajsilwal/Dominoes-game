@@ -2,11 +2,14 @@ package dominos;
 
 import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
 public class Dominos extends StackPane {
+
+    private int rotateImageBy = 90;
+    private int rectangleHeight = 100;
+    private int rectangleWeigth = 50;
 
     private int right;
     private int left;
@@ -17,14 +20,16 @@ public class Dominos extends StackPane {
         this.left = left;
         this.right = right;
     }
+
+    /* this method creates rectangle and sets domino image from the file*/
     public void setRectangle() {
         String dominoName = String.format("dominoImages/%d-%d.jpg", left, right);
         Image image = new Image(dominoName);
         Rectangle rectangle = new Rectangle();
-        rectangle.setRotate(90);
+        rectangle.setRotate(rotateImageBy);
         rectangle.setFill(new ImagePattern(image));
-        rectangle.setHeight(100);
-        rectangle.setWidth(50);
+        rectangle.setHeight(rectangleHeight);
+        rectangle.setWidth(rectangleWeigth);
         getChildren().add(rectangle);
 
         this.setOnMouseClicked(event -> {

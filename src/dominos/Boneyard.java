@@ -5,15 +5,18 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+/* this class contains all the possible dominos i.e. 28 */
 public class Boneyard {
 
+    private int dominosForPlayer = 7;
+    /**@var handsForPlayer is the list that contains 7 dominos for each player */
     List<Dominos> handsForPlayer;
     private List<Dominos> boneyardList = new ArrayList<>();
 
     /* index of j starts from i because we only need items from upper triangular matrix*/
     public Boneyard() {
-        for (int i = 0; i < 7; i++){
-            for (int j = i; j < 7; j++){
+        for (int i = 0; i < dominosForPlayer; i++){
+            for (int j = i; j < dominosForPlayer; j++){
                 Dominos dominos = new Dominos(i, j);
                 boneyardList.add(dominos);
             }
@@ -21,10 +24,11 @@ public class Boneyard {
         Collections.shuffle(boneyardList);
     }
 
+    /* generate 7 random dominos for each player from boneyard (from 28 total)*/
     public List<Dominos> handsForPlayer() {
         List<Dominos> handsForPlayer = new ArrayList<>();
 
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < dominosForPlayer; i++) {
             int rand = new Random().nextInt(getBoneyardSize());
             handsForPlayer.add(getDominos(rand));
         }
