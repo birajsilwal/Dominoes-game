@@ -12,6 +12,10 @@ public interface Constants {
     int borderPaneWidth = 1300;
     int borderPaneHeight = 800;
 
+    int rotateImageBy = -90;
+    int rectangleHeight = 50;
+    int rectangleWeigth = 100;
+
     /*custom colors used for better UI*/
     Color yellowOrange = Color.valueOf("#ffae42B3");
     Color yellowGreen = Color.valueOf("#9acd32B3");

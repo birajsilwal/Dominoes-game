@@ -5,11 +5,9 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
-public class Dominos extends StackPane {
+import static dominos.Constants.*;
 
-    private int rotateImageBy = 90;
-    private int rectangleHeight = 100;
-    private int rectangleWeigth = 50;
+public class Dominos extends StackPane {
 
     private int right;
     private int left;
@@ -34,9 +32,20 @@ public class Dominos extends StackPane {
 
         this.setOnMouseClicked(event -> {
             rectangle.setVisible(false);
-            new Players().addToPlayedDomino1(rectangle);
 //            getChildren().add(rectangle);
+//            setRec();
         });
+    }
+
+    public void setRec() {
+        String dominoName = String.format("dominoImages/%d-%d.jpg", left, right);
+        Image image = new Image(dominoName);
+        Rectangle rectangle = new Rectangle();
+        rectangle.setRotate(rotateImageBy);
+        rectangle.setFill(new ImagePattern(image));
+        rectangle.setHeight(rectangleHeight);
+        rectangle.setWidth(rectangleWeigth);
+        getChildren().add(rectangle);
     }
 
 

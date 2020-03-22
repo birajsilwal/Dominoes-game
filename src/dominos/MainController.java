@@ -2,23 +2,26 @@ package dominos;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
 import static dominos.Constants.*;
 
 /* this is the main class of the game.
 * this class is responsible for connecting all the other classes */
 public class MainController extends Application {
-    //private BorderPane borderPane;
     private FlowPane flowPane;
     private BorderPane borderPane;
-    private VBox vBox;
+    private VBox vBoxHumanHand;
+    private HBox hBoxPlayedDominos;
     private Display display;
     private Dominos dominos;
     private Players players = new Players();
-    private Players humanPlayer = new Players();
 
     public static void main(String[] args) {
         launch(args);
@@ -26,35 +29,37 @@ public class MainController extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        humanPlayer.humanPlayer();
+        players.humanPlayer();
         initGUI(primaryStage);
     }
 
     /* GUI starts from here */
     private void initGUI(Stage primaryStage) {
+        Display display = new Display();
 
-        HBox hBox = new HBox(new Display().buttonDraw(), new Display().labelPart());
+        // Bottom item: horizontal part
+        HBox hBox = new HBox(display.buttonDraw(), display.labelPart());
         hBox.setAlignment(Pos.CENTER);
         hBox.setBackground(new Background
                 (new BackgroundFill(yellowGreen, CornerRadii.EMPTY, Insets.EMPTY)));
 
-        // displaying human hand
-        vBox = new VBox();
-        dominos = new Dominos(1,1);
-        humanPlayer.drawHumanHand(vBox);
-        vBox.getChildren().add(dominos);
-        vBox.setPadding(new Insets(10));
-        vBox.setSpacing(-10);
-        vBox.setPrefWidth(200);
-        vBox.setBackground(new Background(new BackgroundFill(yellowOrange, CornerRadii.EMPTY, Insets.EMPTY)));
+        // Right item: displaying human hand
+        FlowPane flowPaneHumanHand = new FlowPane(Orientation.VERTICAL, 0, 20);
+        Text humanHandString = new Text("Human's Hand");
+        flowPaneHumanHand.getChildren().add(humanHandString);
+        humanHandString.setFont(Font.font(15));
+        players.drawHumanHand2(flowPaneHumanHand);
+        flowPaneHumanHand.setPadding(new Insets(10, 15, 10, 15));
+        flowPaneHumanHand.setBackground(new Background(new BackgroundFill(yellowOrange, CornerRadii.EMPTY, Insets.EMPTY)));
 
-//        FlowPane flowPane = new FlowPane();
-//        players.setPlayedDomino(flowPane);
-//        flowPane.getChildren().add(dominos);
+        // Center item: displaying played dominos
+        hBoxPlayedDominos = new HBox();
+        players.drawPlayedDomino(hBoxPlayedDominos);
+
 
         borderPane = new BorderPane();
-        borderPane.setCenter(flowPane);
-        borderPane.setRight(vBox);
+        borderPane.setCenter(hBoxPlayedDominos);
+        borderPane.setLeft(flowPaneHumanHand);
         borderPane.setBottom(hBox);;
         borderPane.setBackground(new Background
         (new BackgroundFill(blueGreen, CornerRadii.EMPTY, Insets.EMPTY)));

@@ -12,35 +12,48 @@ public class Players {
 
     Boneyard boneyard = new Boneyard();
     private Dominos dominos;
-    private List<Dominos> humanHand;
+    private List<Dominos> humanHandList;
     private List<Dominos> computerHand;
     private List<Dominos> playedDomino = new ArrayList<>();
     int input;
 
     public Players() {
-        humanHand = boneyard.handsForPlayer();
+        humanHandList = boneyard.handsForPlayer();
         computerHand = boneyard.handsForPlayer();
     }
 
     /* unused method, please disregard */
     public Players(Display display) {
         this.display = display;
-        humanHand = boneyard.handsForPlayer();
+        humanHandList = boneyard.handsForPlayer();
         computerHand = boneyard.handsForPlayer();
     }
 
     /* this method is to update the human hand (human's domino) into the GUI */
-    public void drawHumanHand(VBox vBox) {
-        for (Dominos humanHand : humanHand) {
-            humanHand.setRectangle();
-            vBox.getChildren().add(humanHand);
+//    public void drawHumanHand(VBox vBox) {
+//        for (Dominos humanHandDomino : humanHandList) {
+//            humanHandDomino.setRectangle();
+//            vBox.getChildren().add(humanHandDomino);
+//        }
+//    }
+
+    public void drawHumanHand2(FlowPane flowPane) {
+        for (Dominos humanHandDomino : humanHandList) {
+            flowPane.getChildren().add(new Display().setRectangle(humanHandDomino));
         }
     }
+
+//    public void drawHumanHand1(VBox vBox) {
+//        for (int i = 0; i < 8; i++) {
+//            dominos = humanHandList.get(i);
+//            vBox.getChildren().add(display.setRectangle(dominos));
+//        }
+//    }
 
     /**@param hBox is used to display all the played dominos*/
     public void drawPlayedDomino(HBox hBox) {
         for (Dominos playedDominos : playedDomino) {
-            playedDominos.setRectangle();
+            playedDominos.setRec();
             hBox.getChildren().add(playedDominos);
         }
     }
@@ -49,7 +62,7 @@ public class Players {
     * different cases are used inside this method*/
     public void humanPlayer() {
         System.out.print("Human's Tray: ");
-        System.out.println(humanHand);
+        System.out.println(humanHandList);
         System.out.print("Computer's Tray: ");
         System.out.println(computerHand);
         System.out.println("Human's Turn");
@@ -64,7 +77,7 @@ public class Players {
     /*this method have computer player instructions and cases*/
     public void computerPlayer() {
         System.out.print("Human's Tray: ");
-        System.out.println(humanHand);
+        System.out.println(humanHandList);
         System.out.print("Computer's Tray: ");
         System.out.println(computerHand);
 
@@ -131,7 +144,7 @@ public class Players {
         System.out.println("Enter a number: ");
         Scanner scanner = new Scanner(System.in);
         input =  scanner.nextInt();
-        System.out.println("Playing " + humanHand.get(input));
+        System.out.println("Playing " + humanHandList.get(input));
 
         flipOrNot();
 
@@ -147,18 +160,18 @@ public class Players {
         String flipOrNot = scanner1.nextLine();
 
         if (flipOrNot.equals("yes")){
-            humanHand.get(input).flipDomino();
+            humanHandList.get(input).flipDomino();
         }
     }
 
     /* upon method call, computer flips the dominos */
     private void computerFlip() {
-            humanHand.get(input).flipDomino();
+            humanHandList.get(input).flipDomino();
     }
 
     /* adding played dominos into the array list */
     public void addToPlayedDomino(int index) {
-        playedDomino.add(humanHand.remove(index));
+        playedDomino.add(humanHandList.remove(index));
     }
 
     public void addToPlayedDomino1(Rectangle rectangle) {
@@ -170,4 +183,8 @@ public class Players {
         System.out.println("Thank you for playing this game.");
         System.exit(0);
     }
+
+    public int getBoneyardsize() { return boneyard.getBoneyardSize();}
+
+    public int getComputerHandSize() {return computerHand.size();}
 }
