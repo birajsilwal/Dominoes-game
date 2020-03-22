@@ -18,7 +18,6 @@ public class MainController extends Application {
     private FlowPane flowPane;
     private BorderPane borderPane;
     private VBox vBoxHumanHand;
-    private HBox hBoxPlayedDominos;
     private Display display;
     private Dominos dominos;
     private Players players = new Players();
@@ -47,22 +46,30 @@ public class MainController extends Application {
         FlowPane flowPaneHumanHand = new FlowPane(Orientation.VERTICAL, 0, 20);
         Text humanHandString = new Text("Human's Hand");
         flowPaneHumanHand.getChildren().add(humanHandString);
-        humanHandString.setFont(Font.font(15));
-        players.drawHumanHand2(flowPaneHumanHand);
         flowPaneHumanHand.setPadding(new Insets(10, 15, 10, 15));
         flowPaneHumanHand.setBackground(new Background(new BackgroundFill(yellowOrange, CornerRadii.EMPTY, Insets.EMPTY)));
+        humanHandString.setFont(Font.font(15));
 
-        // Center item: displaying played dominos
-        hBoxPlayedDominos = new HBox();
-        players.drawPlayedDomino(hBoxPlayedDominos);
+        players.drawHumanHand2(flowPaneHumanHand);
+
+
+        HBox hBoxPlayedDominos = new HBox();
+        DrawDominoRectangle drawDominoRectangle = new DrawDominoRectangle();
+        drawDominoRectangle.setOnMouseClicked(event -> {
+            // Center item: displaying played dominos
+//            players.drawPlayedDomino(hBoxPlayedDominos);
+
+            int x = event.getClickCount();
+            System.out.println(x);
+        });
 
 
         borderPane = new BorderPane();
-        borderPane.setCenter(hBoxPlayedDominos);
+//        borderPane.setCenter(drawDominoRectangle.drawPlayed(hBoxPlayedDominos));
         borderPane.setLeft(flowPaneHumanHand);
         borderPane.setBottom(hBox);;
-        borderPane.setBackground(new Background
-        (new BackgroundFill(blueGreen, CornerRadii.EMPTY, Insets.EMPTY)));
+//        borderPane.setBackground(new Background
+//        (new BackgroundFill(blueGreen, CornerRadii.EMPTY, Insets.EMPTY)));
 
         Scene scene = new Scene(borderPane, borderPaneWidth, borderPaneHeight);
         primaryStage.setTitle("Dominos Game");

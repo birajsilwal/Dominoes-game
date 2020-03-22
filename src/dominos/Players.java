@@ -22,41 +22,39 @@ public class Players {
         computerHand = boneyard.handsForPlayer();
     }
 
-    /* unused method, please disregard */
-    public Players(Display display) {
-        this.display = display;
-        humanHandList = boneyard.handsForPlayer();
-        computerHand = boneyard.handsForPlayer();
-    }
 
-    /* this method is to update the human hand (human's domino) into the GUI */
-//    public void drawHumanHand(VBox vBox) {
+//    public void drawHumanHand2(FlowPane flowPane) {
 //        for (Dominos humanHandDomino : humanHandList) {
-//            humanHandDomino.setRectangle();
-//            vBox.getChildren().add(humanHandDomino);
+//            flowPane.getChildren().add(new DrawDominoRectangle().setRectangle(humanHandDomino));
 //        }
 //    }
 
     public void drawHumanHand2(FlowPane flowPane) {
-        for (Dominos humanHandDomino : humanHandList) {
-            flowPane.getChildren().add(new Display().setRectangle(humanHandDomino));
+        for (int i = 0; i < 7; i++) {
+            Dominos humanHandDomino = humanHandList.get(i);
+//            flowPane.getChildren().add(new DrawDominoRectangle().setRectangle(humanHandDomino, i, humanHandList));
+            flowPane.getChildren().add(new DrawDominoRectangle().setRectangle(humanHandDomino));
         }
     }
 
-//    public void drawHumanHand1(VBox vBox) {
-//        for (int i = 0; i < 8; i++) {
-//            dominos = humanHandList.get(i);
-//            vBox.getChildren().add(display.setRectangle(dominos));
+//    /**@param hBox is used to display all the played dominos*/
+//    public void drawPlayedDomino(HBox hBox) {
+//        for (int i = 0; i < 7; i++) {
+//            Dominos playedDominos = playedDomino.get(i);
+//            hBox.getChildren().add(new DrawDominoRectangle()
+//                    .setRectangle(playedDominos));
+//            System.out.println(playedDominos);
 //        }
 //    }
 
-    /**@param hBox is used to display all the played dominos*/
-    public void drawPlayedDomino(HBox hBox) {
-        for (Dominos playedDominos : playedDomino) {
-//            playedDominos.setRec();
-            hBox.getChildren().add(playedDominos);
-        }
-    }
+//    /**@param hBox is used to display all the played dominos*/
+//    public void drawPlayedDomino(HBox hBox) {
+//        for (Dominos playedDominos : playedDomino) {
+//            System.out.println("x" + playedDomino);
+//            hBox.getChildren().add(new DrawDominoRectangle()
+//                    .setRectangle(playedDominos));
+//        }
+//    }
 
     /*all the instructions and human player logic are in this method\
     * different cases are used inside this method*/
@@ -174,7 +172,7 @@ public class Players {
         playedDomino.add(humanHandList.remove(index));
     }
 
-    public void addToPlayedDomino1(Rectangle rectangle) {
+    public void addToPlayedDomino1(Dominos dominos) {
         playedDomino.add(dominos);
     }
 
@@ -187,4 +185,6 @@ public class Players {
     public int getBoneyardsize() { return boneyard.getBoneyardSize();}
 
     public int getComputerHandSize() {return computerHand.size();}
+
+    public List<Dominos> getPlayedDomino() { return playedDomino;}
 }

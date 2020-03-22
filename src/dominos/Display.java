@@ -54,18 +54,4 @@ public class Display {
         return Font.font("Sans", FontWeight.MEDIUM, fontSize);
     }
 
-    public VBox setRectangle(Dominos dominos) {
-//        String dominoName = String.format("dominoImages/%d-%d.jpg", dominos.getLeft(), dominos.getRight());
-        String dominoName = String.format("dominoImagess/%d-%d.png", dominos.getLeft(), dominos.getRight());
-        Image image = new Image(dominoName);
-        Rectangle rectangle = new Rectangle();
-//        rectangle.setRotate(rotateImageBy);
-        rectangle.setFill(new ImagePattern(image));
-        rectangle.setHeight(rectangleHeight);
-        rectangle.setWidth(rectangleWeigth);
-
-        VBox vBox = new VBox();
-        vBox.getChildren().add(rectangle);
-        return vBox;
-    }
 }

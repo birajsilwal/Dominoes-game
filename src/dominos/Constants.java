@@ -10,7 +10,8 @@ public interface Constants {
 
     // variables used in MainController class
     int borderPaneWidth = 1300;
-    int borderPaneHeight = 800;
+    int borderPaneHeight = 750;
+//    int borderPaneHeight = 650;
 
     int rotateImageBy = -90;
     int rectangleHeight = 50;
