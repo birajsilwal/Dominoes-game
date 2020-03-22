@@ -53,7 +53,7 @@ public class Players {
     /**@param hBox is used to display all the played dominos*/
     public void drawPlayedDomino(HBox hBox) {
         for (Dominos playedDominos : playedDomino) {
-            playedDominos.setRec();
+//            playedDominos.setRec();
             hBox.getChildren().add(playedDominos);
         }
     }
