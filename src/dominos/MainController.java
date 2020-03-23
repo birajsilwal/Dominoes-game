@@ -10,6 +10,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static dominos.Constants.*;
 
 /* this is the main class of the game.
@@ -21,6 +24,8 @@ public class MainController extends Application {
     private Display display;
     private Dominos dominos;
     private Players players = new Players();
+
+    List<Dominos> ddd = new ArrayList<>();
 
     public static void main(String[] args) {
         launch(args);
@@ -49,25 +54,29 @@ public class MainController extends Application {
         flowPaneHumanHand.setPadding(new Insets(10, 15, 10, 15));
         flowPaneHumanHand.setBackground(new Background(new BackgroundFill(yellowOrange, CornerRadii.EMPTY, Insets.EMPTY)));
         humanHandString.setFont(Font.font(15));
-
         players.drawHumanHand2(flowPaneHumanHand);
 
+        // Left item: displaying human hand
+        FlowPane flowPanePlayedDomino = new FlowPane(Orientation.VERTICAL, 0, 20);
+        Text humanHandString1 = new Text("Played Dominos");
+        flowPanePlayedDomino.getChildren().add(humanHandString1);
+        flowPanePlayedDomino.setPadding(new Insets(10, 15, 10, 15));
+        flowPanePlayedDomino.setBackground(new Background(new BackgroundFill(yellowOrange, CornerRadii.EMPTY, Insets.EMPTY)));
+        humanHandString.setFont(Font.font(15));
 
-        HBox hBoxPlayedDominos = new HBox();
         DrawDominoRectangle drawDominoRectangle = new DrawDominoRectangle();
-        drawDominoRectangle.setOnMouseClicked(event -> {
-            // Center item: displaying played dominos
-//            players.drawPlayedDomino(hBoxPlayedDominos);
+        drawDominoRectangle.drawPlayed(flowPanePlayedDomino, ddd);
 
-            int x = event.getClickCount();
-            System.out.println(x);
-        });
+//        // Center item: displaying played domino
+//        HBox hBoxPlayedDomino = new HBox();
+//        DrawDominoRectangle drawDominoRectangle = new DrawDominoRectangle();
+//        drawDominoRectangle.drawPlayed(hBoxPlayedDomino, ddd);
 
 
         borderPane = new BorderPane();
-//        borderPane.setCenter(drawDominoRectangle.drawPlayed(hBoxPlayedDominos));
+        borderPane.setRight(flowPanePlayedDomino);
         borderPane.setLeft(flowPaneHumanHand);
-        borderPane.setBottom(hBox);;
+        borderPane.setBottom(hBox);
 //        borderPane.setBackground(new Background
 //        (new BackgroundFill(blueGreen, CornerRadii.EMPTY, Insets.EMPTY)));
 

@@ -1,17 +1,13 @@
 package dominos;
 
 import javafx.scene.layout.*;
-import javafx.scene.shape.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Players {
 
-    Display display;
-
     Boneyard boneyard = new Boneyard();
-    private Dominos dominos;
     private List<Dominos> humanHandList;
     private List<Dominos> computerHand;
     private List<Dominos> playedDomino = new ArrayList<>();
@@ -22,51 +18,39 @@ public class Players {
         computerHand = boneyard.handsForPlayer();
     }
 
-
-//    public void drawHumanHand2(FlowPane flowPane) {
-//        for (Dominos humanHandDomino : humanHandList) {
-//            flowPane.getChildren().add(new DrawDominoRectangle().setRectangle(humanHandDomino));
-//        }
-//    }
-
     public void drawHumanHand2(FlowPane flowPane) {
         for (int i = 0; i < 7; i++) {
             Dominos humanHandDomino = humanHandList.get(i);
 //            flowPane.getChildren().add(new DrawDominoRectangle().setRectangle(humanHandDomino, i, humanHandList));
-            flowPane.getChildren().add(new DrawDominoRectangle().setRectangle(humanHandDomino));
+            flowPane.getChildren().add(new DrawDominoRectangle().setRectangle(humanHandDomino, humanHandList, playedDomino, i));
         }
     }
 
-//    /**@param hBox is used to display all the played dominos*/
-//    public void drawPlayedDomino(HBox hBox) {
-//        for (int i = 0; i < 7; i++) {
-//            Dominos playedDominos = playedDomino.get(i);
-//            hBox.getChildren().add(new DrawDominoRectangle()
-//                    .setRectangle(playedDominos));
-//            System.out.println(playedDominos);
-//        }
-//    }
+    /* adding played dominos into the array list */
+    public void addToPlayedDomino(int index) {
+        playedDomino.add(humanHandList.remove(index));
+    }
 
-//    /**@param hBox is used to display all the played dominos*/
-//    public void drawPlayedDomino(HBox hBox) {
-//        for (Dominos playedDominos : playedDomino) {
-//            System.out.println("x" + playedDomino);
-//            hBox.getChildren().add(new DrawDominoRectangle()
-//                    .setRectangle(playedDominos));
-//        }
-//    }
+    public void addToPlayedDomino1(Dominos dominos) { playedDomino.add(dominos); }
+
+    public int getBoneyardsize() { return boneyard.getBoneyardSize();}
+
+    public int getComputerHandSize() {return computerHand.size();}
+
+//    public List<Dominos> getPlayedDominoList() { return playedDomino;}
 
     /*all the instructions and human player logic are in this method\
-    * different cases are used inside this method*/
+     * different cases are used inside this method*/
     public void humanPlayer() {
-        System.out.print("Human's Tray: ");
-        System.out.println(humanHandList);
-        System.out.print("Computer's Tray: ");
-        System.out.println(computerHand);
-        System.out.println("Human's Turn");
-        System.out.println("[p] Play Domino");
-        System.out.println("[d] Draw from boneyard");
-        System.out.println("[q] Quit");
+
+//        System.out.print("Human's Tray: ");
+//        System.out.println(humanHandList);
+//        System.out.print("Computer's Tray: ");
+//        System.out.println(computerHand);
+//        System.out.println("Human's Turn");
+//        System.out.println("[p] Play Domino");
+//        System.out.println("[d] Draw from boneyard");
+//        System.out.println("[q] Quit");
 //        humanCases();
 //        computerPlayer();
 //        humanPlayer();
@@ -107,7 +91,7 @@ public class Players {
     }
 
     /* this method have all the logic for computer player
-    * depending on the different situation, computer player chooses dominos tiles*/
+     * depending on the different situation, computer player chooses dominos tiles*/
     public void computerCases() {
         for (int i = 0; i < computerHand.size(); i++) {
             Dominos computerDomino = computerHand.get(i);
@@ -116,23 +100,22 @@ public class Players {
             int tempRight = computerDomino.getRight();
             int sizeOfPlayedDomino = playedDomino.size();
 
-//            if(playedDomino.get(0).getLeft() == tempLeft) {
-//
-//            }
-
-//            if(playedDomino.get(0).getRight() == tempRight){
-//
-//            }
-
             if (playedDomino.get(sizeOfPlayedDomino-1).getRight() == tempLeft) {
                 playedDomino.add(computerHand.remove(i));
                 break;
             }
 
-            if (playedDomino.get(sizeOfPlayedDomino-1).getRight() == tempRight) {
-                computerFlip();
+            else if (playedDomino.get(sizeOfPlayedDomino-1).getRight() == tempRight) {
+                computerFlip(i);
                 playedDomino.add(computerHand.remove(i));
                 break;
+            }
+
+            else if (playedDomino.get(sizeOfPlayedDomino-1).getRight() != tempRight || playedDomino.get(sizeOfPlayedDomino-1).getRight() != tempLeft ) {
+                if (tempRight == 0 || tempLeft == 0) {
+                    playedDomino.add(computerHand.remove(i));
+                    break;
+                }
             }
         }
     }
@@ -151,6 +134,12 @@ public class Players {
         System.out.println("Played dominos: " + playedDomino + "\n");
     }
 
+    /* method to quit the game */
+    public void quit() {
+        System.out.println("Thank you for playing this game.");
+        System.exit(0);
+    }
+
     /* option for user if they want to flip their dominos or not */
     private void flipOrNot() {
         System.out.println("Do you want to flip the domino?");
@@ -163,28 +152,8 @@ public class Players {
     }
 
     /* upon method call, computer flips the dominos */
-    private void computerFlip() {
-            humanHandList.get(input).flipDomino();
+    private void computerFlip(int i) {
+        computerHand.get(i).flipDomino();
     }
 
-    /* adding played dominos into the array list */
-    public void addToPlayedDomino(int index) {
-        playedDomino.add(humanHandList.remove(index));
-    }
-
-    public void addToPlayedDomino1(Dominos dominos) {
-        playedDomino.add(dominos);
-    }
-
-    /* method to quit the game */
-    public void quit() {
-        System.out.println("Thank you for playing this game.");
-        System.exit(0);
-    }
-
-    public int getBoneyardsize() { return boneyard.getBoneyardSize();}
-
-    public int getComputerHandSize() {return computerHand.size();}
-
-    public List<Dominos> getPlayedDomino() { return playedDomino;}
 }
