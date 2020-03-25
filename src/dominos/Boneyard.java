@@ -59,4 +59,10 @@ public class Boneyard {
     public boolean isEmpty() {
         return boneyardList.size() <= 0;
     }
+
+    /**@return the first indexed domino from the boneyard */
+    public Dominos pickFromBoneYard () {
+        return boneyardList.remove(0);
+    }
+
 }

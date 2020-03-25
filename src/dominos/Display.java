@@ -16,7 +16,7 @@ import static dominos.Constants.*;
 /* this class is responsible for displaying element into the pane */
 public class Display {
     Players players = new Players();
-    private int fontSize = 25;
+    private int fontSize = 15;
 
     /* this method contains label elements */
     public VBox labelPart() {

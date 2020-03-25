@@ -1,15 +1,25 @@
 package dominos;
 
-import javafx.scene.layout.StackPane;
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 
-public class Dominos extends StackPane {
+//public class Dominos extends Rectangle implements EventHandler<MouseEvent> {
+public class Dominos extends Rectangle {
 
     private int right;
     private int left;
     private Rectangle rectangle;
+    private MainController mainController;
 
     /**@param left if left element of the domino and right is right element.*/
+    public Dominos (int left, int right, MainController mainController) {
+        this.left = left;
+        this.right = right;
+        this.mainController = mainController;
+    }
+
     public Dominos (int left, int right) {
         this.left = left;
         this.right = right;
@@ -41,4 +51,12 @@ public class Dominos extends StackPane {
         return "[" + getLeft() + ", " + getRight() + "]";
     }
 
+
+//    @Override
+//    public void handle(MouseEvent event) {
+//        if (event.getButton() == MouseButton.PRIMARY) {
+//            mainController.addPlayedDominoToBoard(this);
+//            System.out.println("Clicked");
+//        }
+//    }
 }
