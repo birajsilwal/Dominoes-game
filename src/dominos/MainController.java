@@ -5,7 +5,9 @@ import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -21,9 +23,7 @@ import static dominos.Constants.*;
 public class MainController extends Application {
 
     private BorderPane borderPane;
-    List<Dominos> ddd = new ArrayList<>();
     Board board = new Board();
-    Dominos dominos = new Dominos(1,1);
 
     public static void main(String[] args) {
         launch(args);
@@ -44,7 +44,7 @@ public class MainController extends Application {
         hBox.setBackground(new Background
                 (new BackgroundFill(yellowGreen, CornerRadii.EMPTY, Insets.EMPTY)));
 
-        // Right item: displaying human hand
+        // Left item: displaying human hand
         FlowPane flowPaneHumanHand = new FlowPane(Orientation.VERTICAL, 0, 20);
         Text humanHandString = new Text("Human's Hand");
         flowPaneHumanHand.getChildren().add(humanHandString);
@@ -53,26 +53,28 @@ public class MainController extends Application {
         humanHandString.setFont(Font.font(15));
         flowPaneHumanHand = board.drawHumanHand(flowPaneHumanHand);
 
-        // Left item: displaying human hand
+        // Right item: displaying played dominos
         FlowPane flowPanePlayedDomino = new FlowPane(Orientation.VERTICAL, 0, 20);
         Text humanHandString1 = new Text("Played Dominos");
         flowPanePlayedDomino.getChildren().add(humanHandString1);
         flowPanePlayedDomino.setPadding(new Insets(10, 15, 10, 15));
-        flowPanePlayedDomino.setBackground(new Background(new BackgroundFill(yellowOrange, CornerRadii.EMPTY, Insets.EMPTY)));
+//        flowPanePlayedDomino.setBackground(new Background(new BackgroundFill(CornerRadii.EMPTY, Insets.EMPTY)));
         humanHandString.setFont(Font.font(15));
 
-//        drawDominoRectangle.drawPlayed(flowPanePlayedDomino, ddd);
-        DrawPlayedDomino drawPlayedDomino = new DrawPlayedDomino();
+//        flowPanePlayedDomino = board.updateGUI(flowPanePlayedDomino);
+//        DrawPlayedDomino drawPlayedDomino = new DrawPlayedDomino();
 
         // **********************************************
 
-        FlowPane flowPanePd = new FlowPane(Orientation.VERTICAL, 0, 20);
 
         board.updateGUI();
+        Label label = new Label("biraj");
+//        board.getChildren().add(label);
+
 
         // main displaying stuff going on here
         borderPane = new BorderPane();
-//        borderPane.setRight(board);
+//        borderPane.setRight(flowPanePlayedDomino);
         borderPane.setCenter(board);
         borderPane.setLeft(flowPaneHumanHand);
         borderPane.setBottom(hBox);
@@ -84,7 +86,6 @@ public class MainController extends Application {
     }
 
     public void addPlayedDominoToBoard(Dominos dominos) {
-
         board.insertDomino(dominos);
         board.updateGUI();
     }

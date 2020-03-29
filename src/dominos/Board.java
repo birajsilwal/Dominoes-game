@@ -1,20 +1,23 @@
 package dominos;
 
+import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Board extends Pane {
+public class Board extends FlowPane {
 
     List<Dominos> playedDomino;
     List<Dominos> humanHand = new ArrayList<>();
     FlowPane flowPane;
+    Label label;
 
     Board() {
         playedDomino = new ArrayList<>();
         flowPane = new FlowPane();
+        label = new Label("Name updated");
     }
 
     /**@param dominos is added to the arraylist */
@@ -23,11 +26,14 @@ public class Board extends Pane {
     }
 
     public void updateGUI() {
+
         flowPane.getChildren().clear();
-        for (Dominos domino : playedDomino) {
-            flowPane.getChildren().add(new DrawPlayedDomino().setRectangle(domino));
+        playedDomino.add(new Dominos(1,1));
+        for (Dominos dominos : playedDomino) {
+            flowPane.getChildren().add(new DrawDominoRectangle().setRectangle(dominos));
         }
-        System.out.println("updateGUI");
+        flowPane.getChildren().add(label);
+        System.out.println("updateGUI is executing");
     }
 
     public FlowPane drawHumanHand(FlowPane flowPane) {
@@ -35,7 +41,7 @@ public class Board extends Pane {
         humanHand = players.getHumanHand();
         for (int i = 0; i < 7; i++) {
             Dominos dominos = humanHand.get(i);
-            flowPane.getChildren().add(new DrawPlayedDomino().setRectangle(dominos));
+            flowPane.getChildren().add(new DrawDominoRectangle().setRectangle(dominos));
         }
         return flowPane;
     }
