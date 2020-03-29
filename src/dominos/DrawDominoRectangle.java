@@ -1,11 +1,17 @@
 package dominos;
 
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import org.w3c.dom.DOMImplementation;
+import org.w3c.dom.css.Rect;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,14 +20,15 @@ import static dominos.Constants.*;
 
 public class DrawDominoRectangle extends Pane {
 
-    Rectangle rectangle = new Rectangle();
+    Rectangle rectangle;
     FlowPane flowPane = new FlowPane();
     List<Dominos> globalPlayedDomino = new ArrayList<>();
-    MainController mainController;
+//    MainController mainController;
 
-    DrawDominoRectangle(MainController mainController) {
-        this.mainController = mainController;
-    }
+//    DrawDominoRectangle(MainController mainController, Rectangle rectangle) {
+////        this.mainController = mainController;
+//        this.rectangle = rectangle;
+//    }
 
     public Rectangle setRectangle(Dominos dominos, List<Dominos> humanHandList, List<Dominos> playedDomino, int index) {
 //    public Rectangle setRectangle(Dominos dominos) {
@@ -41,44 +48,25 @@ public class DrawDominoRectangle extends Pane {
 //
 //        });
 
-        rectangle.setOnMouseClicked(event -> {
-            System.out.println("rectangle on click");
-            playedDomino.add(humanHandList.get(index));
-            System.out.println(playedDomino);
+//        rectangle.setOnMouseClicked(event -> {
+//            System.out.println("rectangle on click");
+//            playedDomino.add(humanHandList.get(index));
+//            System.out.println(playedDomino);
 //            rectangle.setVisible(false);
-            for (Dominos dominos1 : playedDomino) {
-                mainController.addPlayedDominoToBoard(dominos1);
-            }
-        });
+//            for (Dominos dominos1 : playedDomino) {
+//                mainController.addPlayedDominoToBoard(dominos1);
+//            }
+//        });
         return rectangle;
     }
 
-//    public void drawPlayed(FlowPane flowPanePlayedDomino, List<Dominos> dpd) {
-//        rectangle.setVisible(false);
-////        System.out.println("DPD global: " + dpd);
-//        for (Dominos humanHandDomino : dpd) {
-//            flowPanePlayedDomino.getChildren().add(setRectangle(humanHandDomino));
-//        }
-//
-//    }
 
-//    public Rectangle setRectangle(Dominos dominos) {
-//        String dominoName = String.format("dominoImages/%d-%d.png", dominos.getLeft(), dominos.getRight());
-//        Image image = new Image(dominoName);
-//        rectangle.setFill(new ImagePattern(image));
-//        rectangle.setHeight(rectangleHeight);
-//        rectangle.setWidth(rectangleWeigth);
-//        getChildren().add(rectangle);
-//        return rectangle;
-//    }
-
-//    @Override
-//    public void handle(MouseEvent event) {
-//        if (event.getButton() == MouseButton.PRIMARY) {
-////            mainController.updateGUI(this);
-//            System.out.println("Clicked");
-//            System.out.println(event.getX());
-//        }
-//    }
+//        EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
+//            @Override
+//            public void handle(MouseEvent event) {
+//                System.out.println("Click new");
+//                rectangle.setFill(Color.GREEN);
+//            }
+//        };
 
 }

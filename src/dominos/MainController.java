@@ -21,13 +21,9 @@ import static dominos.Constants.*;
 public class MainController extends Application {
 
     private BorderPane borderPane;
-    private Players players = new Players();
     List<Dominos> ddd = new ArrayList<>();
-//    DrawDominoRectangle drawDominoRectangle = new DrawDominoRectangle();
     Board board = new Board();
-    Rectangle rectangle = new Rectangle();
     Dominos dominos = new Dominos(1,1);
-    List<Dominos> humanHandd = new ArrayList<>();
 
     public static void main(String[] args) {
         launch(args);
@@ -35,7 +31,6 @@ public class MainController extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-//        players.humanPlayer();
         initGUI(primaryStage);
     }
 
@@ -56,7 +51,7 @@ public class MainController extends Application {
         flowPaneHumanHand.setPadding(new Insets(10, 15, 10, 15));
         flowPaneHumanHand.setBackground(new Background(new BackgroundFill(yellowOrange, CornerRadii.EMPTY, Insets.EMPTY)));
         humanHandString.setFont(Font.font(15));
-        flowPaneHumanHand = players.drawHumanHand(flowPaneHumanHand);
+        flowPaneHumanHand = board.drawHumanHand(flowPaneHumanHand);
 
         // Left item: displaying human hand
         FlowPane flowPanePlayedDomino = new FlowPane(Orientation.VERTICAL, 0, 20);
@@ -69,9 +64,9 @@ public class MainController extends Application {
 //        drawDominoRectangle.drawPlayed(flowPanePlayedDomino, ddd);
         DrawPlayedDomino drawPlayedDomino = new DrawPlayedDomino();
 
-
-
         // **********************************************
+
+        FlowPane flowPanePd = new FlowPane(Orientation.VERTICAL, 0, 20);
 
         board.updateGUI();
 

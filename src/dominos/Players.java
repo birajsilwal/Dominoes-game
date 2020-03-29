@@ -1,8 +1,5 @@
 package dominos;
 
-import javafx.scene.layout.*;
-import sun.applet.Main;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -14,25 +11,10 @@ public class Players {
     private List<Dominos> computerHand;
     private List<Dominos> playedDomino = new ArrayList<>();
     int input;
-    MainController mainController;
-
-    public Players(MainController mainController) {
-        this.mainController = mainController;
-    }
 
     public Players() {
         humanHandList = boneyard.handsForPlayer();
         computerHand = boneyard.handsForPlayer();
-    }
-
-    public FlowPane drawHumanHand(FlowPane flowPane) {
-        for (int i = 0; i < 7; i++) {
-            Dominos humanHandDomino = humanHandList.get(i);
-            flowPane.getChildren().add(new DrawDominoRectangle(mainController).setRectangle(humanHandDomino, humanHandList, playedDomino, i));
-//            flowPane.getChildren().add(new DrawDominoRectangle().setRectangle(humanHandDomino));
-//            flowPane.getChildren().add(new DrawPlayedDomino().setRectangle(humanHandDomino));
-        }
-        return flowPane;
     }
 
     /* adding played dominos into the array list */
@@ -42,11 +24,13 @@ public class Players {
 
     public void addToPlayedDomino1(Dominos dominos) { playedDomino.add(dominos); }
 
-    public int getBoneyardsize() { return boneyard.getBoneyardSize();}
+    public int getBoneyardsize() { return boneyard.getBoneyardSize(); }
 
-    public int getComputerHandSize() {return computerHand.size();}
+    public int getComputerHandSize() { return computerHand.size(); }
 
-    public List<Dominos> getComputerHand() { return computerHand;}
+    public List<Dominos> getComputerHand() { return computerHand; }
+
+    public List<Dominos> getHumanHand() { return humanHandList; }
 
 
 

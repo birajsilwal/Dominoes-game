@@ -11,14 +11,15 @@ public class Dominos extends Rectangle {
     private int right;
     private int left;
     private Rectangle rectangle;
-    private MainController mainController;
+//    private MainController mainController;
+    Board board = new Board();
 
-    /**@param left if left element of the domino and right is right element.*/
-    public Dominos (int left, int right, MainController mainController) {
-        this.left = left;
-        this.right = right;
-        this.mainController = mainController;
-    }
+//    /**@param left if left element of the domino and right is right element.*/
+//    public Dominos (int left, int right, MainController mainController) {
+//        this.left = left;
+//        this.right = right;
+//        this.mainController = mainController;
+//    }
 
     public Dominos (int left, int right) {
         this.left = left;

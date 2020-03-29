@@ -1,14 +1,15 @@
 package dominos;
 
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/* Please disregard this class. Currently this class is not in use */
-public class Board extends GridPane {
+public class Board extends Pane {
+
     List<Dominos> playedDomino;
+    List<Dominos> humanHand = new ArrayList<>();
     FlowPane flowPane;
 
     Board() {
@@ -27,5 +28,15 @@ public class Board extends GridPane {
             flowPane.getChildren().add(new DrawPlayedDomino().setRectangle(domino));
         }
         System.out.println("updateGUI");
+    }
+
+    public FlowPane drawHumanHand(FlowPane flowPane) {
+        Players players = new Players();
+        humanHand = players.getHumanHand();
+        for (int i = 0; i < 7; i++) {
+            Dominos dominos = humanHand.get(i);
+            flowPane.getChildren().add(new DrawPlayedDomino().setRectangle(dominos));
+        }
+        return flowPane;
     }
 }
