@@ -1,6 +1,8 @@
 package dominos;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -20,17 +22,18 @@ import static dominos.Constants.*;
 
 /* this is the main class of the game.
 * this class is responsible for connecting all the other classes */
-public class MainController extends Application {
+public class MainController extends Application implements EventHandler<ActionEvent> {
 
     private BorderPane borderPane;
     Board board = new Board();
+
 
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         initGUI(primaryStage);
     }
 
@@ -48,36 +51,33 @@ public class MainController extends Application {
         FlowPane flowPaneHumanHand = new FlowPane(Orientation.VERTICAL, 0, 20);
         Text humanHandString = new Text("Human's Hand");
         flowPaneHumanHand.getChildren().add(humanHandString);
-        flowPaneHumanHand.setPadding(new Insets(10, 15, 10, 15));
+        flowPaneHumanHand.setPadding(new Insets(10, 5, 10, 5));
         flowPaneHumanHand.setBackground(new Background(new BackgroundFill(yellowOrange, CornerRadii.EMPTY, Insets.EMPTY)));
         humanHandString.setFont(Font.font(15));
         flowPaneHumanHand = board.drawHumanHand(flowPaneHumanHand);
 
         // Right item: displaying played dominos
         FlowPane flowPanePlayedDomino = new FlowPane(Orientation.VERTICAL, 0, 20);
-        Text humanHandString1 = new Text("Played Dominos");
-        flowPanePlayedDomino.getChildren().add(humanHandString1);
+        Text playedDominosString = new Text("Played Dominos");
+        flowPanePlayedDomino.getChildren().add(playedDominosString);
         flowPanePlayedDomino.setPadding(new Insets(10, 15, 10, 15));
-//        flowPanePlayedDomino.setBackground(new Background(new BackgroundFill(CornerRadii.EMPTY, Insets.EMPTY)));
+        flowPanePlayedDomino.setBackground(new Background(new BackgroundFill(Color.CYAN, CornerRadii.EMPTY, Insets.EMPTY)));
         humanHandString.setFont(Font.font(15));
-
-//        flowPanePlayedDomino = board.updateGUI(flowPanePlayedDomino);
-//        DrawPlayedDomino drawPlayedDomino = new DrawPlayedDomino();
 
         // **********************************************
 
-
-        board.updateGUI();
         Label label = new Label("biraj");
-//        board.getChildren().add(label);
+        board.getChildren().add(label);
+        flowPanePlayedDomino = board.updateGUI();
 
 
         // main displaying stuff going on here
         borderPane = new BorderPane();
-//        borderPane.setRight(flowPanePlayedDomino);
-        borderPane.setCenter(board);
+        borderPane.setCenter(flowPanePlayedDomino);
         borderPane.setLeft(flowPaneHumanHand);
         borderPane.setBottom(hBox);
+
+        board.updateGUI();
 
         Scene scene = new Scene(borderPane, borderPaneWidth, borderPaneHeight);
         primaryStage.setTitle("Dominos Game");
@@ -90,4 +90,8 @@ public class MainController extends Application {
         board.updateGUI();
     }
 
+    @Override
+    public void handle(ActionEvent event) {
+        // need to implement other function like restart the game and draw from boneyard
+    }
 }

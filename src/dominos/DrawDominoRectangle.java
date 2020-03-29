@@ -10,26 +10,24 @@ import static dominos.Constants.*;
 
 public class DrawDominoRectangle extends Pane {
 
-    Rectangle rectangle = new Rectangle();
     MainController mainController = new MainController();
 
-    public Rectangle setRectangle(Dominos dominos) {
+    public Dominos setRectangle(Dominos dominos) {
         String dominoName = String.format("dominoImages/%d-%d.png", dominos.getLeft(), dominos.getRight());
         Image image = new Image(dominoName);
-        rectangle.setFill(new ImagePattern(image));
-        rectangle.setHeight(rectangleHeight);
-        rectangle.setWidth(rectangleWeigth);
+        dominos.setFill(new ImagePattern(image));
+        dominos.setHeight(rectangleHeight);
+        dominos.setWidth(rectangleWeigth);
 
-        getChildren().add(rectangle);
+        getChildren().add(dominos);
 
-        rectangle.setOnMouseClicked(event -> {
+        dominos.setOnMouseClicked(event -> {
             System.out.println("clicked dddd");
-            mainController.addPlayedDominoToBoard(dominos);
             System.out.println(dominos);
-            rectangle.setVisible(false);
+            mainController.addPlayedDominoToBoard(dominos);
         });
 
-        return rectangle;
+        return dominos;
     }
 
 }
