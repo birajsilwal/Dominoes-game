@@ -2,15 +2,17 @@ package dominos;
 
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.Pane;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Board extends FlowPane {
+public class Board extends Pane {
 
     List<Dominos> playedDomino = new ArrayList<>();
     List<Dominos> humanHand = new ArrayList<>();
     FlowPane flowPane;
-    int count;
+    int count = 0;
 
     Board() {
         flowPane = new FlowPane();
@@ -22,8 +24,7 @@ public class Board extends FlowPane {
         playedDomino.add(dominos);
     }
 
-    public FlowPane updateGUI() {
-
+    public void updateGUI() {
         flowPane.getChildren().clear();
         for (Dominos dominos : playedDomino) {
             flowPane.getChildren().addAll(new DrawDominoRectangle().setRectangle(dominos));
@@ -32,8 +33,8 @@ public class Board extends FlowPane {
         String value = String.valueOf(temp);
         Label label = new Label(value);
         flowPane.getChildren().addAll(label);
+        System.out.println(temp);
         System.out.println("updateGUI is executing");
-        return flowPane;
     }
 
     public FlowPane drawHumanHand(FlowPane flowPane) {

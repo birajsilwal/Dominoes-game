@@ -6,7 +6,6 @@ public class Dominos extends Rectangle {
 
     private int right;
     private int left;
-    private Rectangle rectangle;
 
     public Dominos (int left, int right) {
         this.left = left;
@@ -21,10 +20,6 @@ public class Dominos extends Rectangle {
     /**@return left element of the domino */
     public int getLeft() {
         return left;
-    }
-
-    public Rectangle getImageView() {
-        return rectangle;
     }
 
     /* flips left and right elements i.e. [a, b] --> [b, a] */

@@ -25,7 +25,7 @@ import static dominos.Constants.*;
 public class MainController extends Application implements EventHandler<ActionEvent> {
 
     private BorderPane borderPane;
-    Board board = new Board();
+    private Board board = new Board();
 
 
     public static void main(String[] args) {
@@ -67,13 +67,12 @@ public class MainController extends Application implements EventHandler<ActionEv
         // **********************************************
 
         Label label = new Label("biraj");
-        board.getChildren().add(label);
-        flowPanePlayedDomino = board.updateGUI();
-
+//        board.getChildren().add(label);
+//        flowPanePlayedDomino = board.updateGUI();
 
         // main displaying stuff going on here
         borderPane = new BorderPane();
-        borderPane.setCenter(flowPanePlayedDomino);
+        borderPane.setCenter(board);
         borderPane.setLeft(flowPaneHumanHand);
         borderPane.setBottom(hBox);
 

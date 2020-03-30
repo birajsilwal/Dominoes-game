@@ -17,11 +17,6 @@ public class Players {
         computerHand = boneyard.handsForPlayer();
     }
 
-    /* adding played dominos into the array list */
-    public void addToPlayedDomino(int index) {
-        playedDomino.add(humanHandList.remove(index));
-    }
-
     public void addToPlayedDomino1(Dominos dominos) { playedDomino.add(dominos); }
 
     public int getBoneyardsize() { return boneyard.getBoneyardSize(); }
