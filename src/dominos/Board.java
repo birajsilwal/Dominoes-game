@@ -17,13 +17,12 @@ import static dominos.Constants.vBoxPadding;
 public class Board extends GridPane {
 
     List<Dominos> playedDomino;
-    List<Dominos> humanHand;
     FlowPane flowPanePlayedDomino;
     FlowPane flowPaneHumanHand;
     VBox hBoxLabelPart;
     MainController mainController;
     Display display;
-    Players players;
+//    Players players;
 
     Board(MainController mainController) {
         flowPanePlayedDomino = new FlowPane();
@@ -34,9 +33,8 @@ public class Board extends GridPane {
         add(hBoxLabelPart, 0,4);
         this.mainController = mainController;
         display = new Display();
-        players = new Players();
+//        players = new Players();
         playedDomino = new ArrayList<>();
-        humanHand = new ArrayList<>();
     }
 
     /**@param dominos is added to the arraylist */
@@ -47,40 +45,36 @@ public class Board extends GridPane {
     public void drawPlayedDomino() {
         flowPanePlayedDomino.getChildren().clear();
         for (Dominos dominos : playedDomino) {
-            humanHand.remove(dominos);
             flowPanePlayedDomino.getChildren().addAll(new DrawPlayedDomino().setRectangle(dominos));
         }
     }
 
-    public void drawHumanHand() {
+    public void drawHumanHand(List<Dominos> humanHand) {
         flowPaneHumanHand.getChildren().clear();
-        Players players = new Players();
-        humanHand = players.getHumanHand();
-        for (int i = 0; i < 7; i++) {
-            Dominos dominos = humanHand.get(i);
-            flowPaneHumanHand.getChildren().add(new DrawDominoRectangle(mainController).setRectangle(dominos, humanHand));
+        for (Dominos dominos : humanHand) {
+            flowPaneHumanHand.getChildren().add(new DrawDominoRectangle(mainController).setRectangle(dominos));
         }
     }
 
     /* this method contains label elements */
-    public void labelPart() {
-
-        String boneyardSize = String.valueOf(players.getBoneyardsize());
-        Text boneyardDominos = new Text("Boneyard contains " + boneyardSize + " dominos.");
-
-        String computerHandSize = String.valueOf(players.getComputerHandSize());
-        Text computerDomino = new Text("computer has " + computerHandSize + " dominos.");
-
-        String humanHandSize = String.valueOf(humanHand.size());
-        Text humanDomino = new Text("Human has " + humanHandSize + " dominos.");
-
-//        VBox vBox = new VBox(vBoxLabelSpacing, boneyardDominos, computerDomino);
-        hBoxLabelPart.getChildren().addAll(computerDomino, boneyardDominos, humanDomino);
-
-    }
+//    public void labelPart() {
+//
+//        String boneyardSize = String.valueOf(players.getBoneyardsize());
+//        Text boneyardDominos = new Text("Boneyard contains " + boneyardSize + " dominos.");
+//
+//        String computerHandSize = String.valueOf(players.getComputerHandSize());
+//        Text computerDomino = new Text("computer has " + computerHandSize + " dominos.");
+//
+//        String humanHandSize = String.valueOf(humanHand.size());
+//        Text humanDomino = new Text("Human has " + humanHandSize + " dominos.");
+//
+////        VBox vBox = new VBox(vBoxLabelSpacing, boneyardDominos, computerDomino);
+//        hBoxLabelPart.getChildren().addAll(computerDomino, boneyardDominos, humanDomino);
+//
+//    }
 
     public void updateGUI() {
         drawPlayedDomino();
-        labelPart();
+//        labelPart();
     }
 }

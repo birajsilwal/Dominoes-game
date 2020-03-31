@@ -13,6 +13,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static dominos.Constants.*;
 
 /* this is the main class of the game.
@@ -21,6 +24,8 @@ public class MainController extends Application implements EventHandler<ActionEv
 
     private BorderPane borderPane;
     private Board board;
+    private Players players;
+    private List<Dominos> humanHand;
 
     public static void main(String[] args) {
         launch(args);
@@ -35,6 +40,9 @@ public class MainController extends Application implements EventHandler<ActionEv
     private void initGUI(Stage primaryStage) {
         board = new Board(this);
         Display display = new Display();
+        players = new Players();
+        humanHand = new ArrayList<>();
+        humanHand = players.getHumanHand();
 
         // Bottom item: horizontal part
         HBox hBox = new HBox(display.buttonDraw(), display.labelPart());
@@ -49,7 +57,7 @@ public class MainController extends Application implements EventHandler<ActionEv
         flowPaneHumanHand.setPadding(new Insets(10, 5, 10, 5));
         flowPaneHumanHand.setBackground(new Background(new BackgroundFill(yellowOrange, CornerRadii.EMPTY, Insets.EMPTY)));
         humanHandString.setFont(Font.font(15));
-        board.drawHumanHand();
+        board.drawHumanHand(humanHand);
 
         // Right item: displaying played dominos
         FlowPane flowPanePlayedDomino = new FlowPane(Orientation.VERTICAL, 0, 20);
@@ -78,6 +86,7 @@ public class MainController extends Application implements EventHandler<ActionEv
     public void addPlayedDominoToBoard(Dominos dominos) {
         board.insertDomino(dominos);
         board.drawPlayedDomino();
+        board.drawHumanHand(humanHand);
     }
 
     @Override
