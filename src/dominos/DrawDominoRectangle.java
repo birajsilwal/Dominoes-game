@@ -16,7 +16,7 @@ public class DrawDominoRectangle extends Pane {
         this.mainController = mainController;
     }
 
-    public Dominos setRectangle(Dominos dominos) {
+    public Dominos setRectangle(Dominos dominos, List<Dominos> humanHand) {
         String dominoName = String.format("dominoImages/%d-%d.png", dominos.getLeft(), dominos.getRight());
         Image image = new Image(dominoName);
         dominos.setFill(new ImagePattern(image));
@@ -26,6 +26,8 @@ public class DrawDominoRectangle extends Pane {
         getChildren().add(dominos);
 
         dominos.setOnMouseClicked(event -> {
+//            dominos.setVisible(false);
+            humanHand.remove(dominos);
             mainController.addPlayedDominoToBoard(dominos);
         });
         return dominos;

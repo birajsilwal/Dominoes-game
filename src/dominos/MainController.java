@@ -7,11 +7,14 @@ import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import sun.swing.BakedArrayList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +28,7 @@ public class MainController extends Application implements EventHandler<ActionEv
     private BorderPane borderPane;
     private Board board;
     private Players players;
+    private Boneyard boneyard;
     private List<Dominos> humanHand;
 
     public static void main(String[] args) {
@@ -39,43 +43,30 @@ public class MainController extends Application implements EventHandler<ActionEv
     /* GUI starts from here */
     private void initGUI(Stage primaryStage) {
         board = new Board(this);
-        Display display = new Display();
-        players = new Players();
+        boneyard = new Boneyard();
+        players = new Players(boneyard.handsForPlayer(), boneyard.handsForPlayer);
         humanHand = new ArrayList<>();
         humanHand = players.getHumanHand();
 
+
         // Bottom item: horizontal part
-        HBox hBox = new HBox(display.buttonDraw(), display.labelPart());
-        hBox.setAlignment(Pos.CENTER);
-        hBox.setBackground(new Background
-                (new BackgroundFill(yellowGreen, CornerRadii.EMPTY, Insets.EMPTY)));
+//        HBox hBox = new HBox(display.buttonDraw(), display.labelPart());
+//        hBox.setAlignment(Pos.CENTER);
+//        hBox.setBackground(new Background
+//                (new BackgroundFill(yellowGreen, CornerRadii.EMPTY, Insets.EMPTY)));
 
-        // Left item: displaying human hand
-        FlowPane flowPaneHumanHand = new FlowPane(Orientation.VERTICAL, 0, 20);
-        Text humanHandString = new Text("Human's Hand");
-        flowPaneHumanHand.getChildren().add(humanHandString);
-        flowPaneHumanHand.setPadding(new Insets(10, 5, 10, 5));
-        flowPaneHumanHand.setBackground(new Background(new BackgroundFill(yellowOrange, CornerRadii.EMPTY, Insets.EMPTY)));
-        humanHandString.setFont(Font.font(15));
+
         board.drawHumanHand(humanHand);
-
-        // Right item: displaying played dominos
-        FlowPane flowPanePlayedDomino = new FlowPane(Orientation.VERTICAL, 0, 20);
-        Text playedDominosString = new Text("Played Dominos");
-        flowPanePlayedDomino.getChildren().add(playedDominosString);
-        flowPanePlayedDomino.setPadding(new Insets(10, 15, 10, 15));
-        flowPanePlayedDomino.setBackground(new Background(new BackgroundFill(Color.CYAN, CornerRadii.EMPTY, Insets.EMPTY)));
-        humanHandString.setFont(Font.font(15));
-
-        // **********************************************
-
         board.updateGUI();
 
         // main displaying stuff going on here
         borderPane = new BorderPane();
+        Image image = new Image("wooden.jpg");
+        ImageView imageView = new ImageView(image);
+        imageView.setFitHeight(borderPaneHeight);
+        imageView.setFitWidth(borderPaneWidth);
+        borderPane.getChildren().addAll(imageView);
         borderPane.setCenter(board);
-        borderPane.setLeft(flowPaneHumanHand);
-//        borderPane.setBottom(hBox);
 
         Scene scene = new Scene(borderPane, borderPaneWidth, borderPaneHeight);
         primaryStage.setTitle("Dominos Game");
@@ -87,6 +78,7 @@ public class MainController extends Application implements EventHandler<ActionEv
         board.insertDomino(dominos);
         board.drawPlayedDomino();
         board.drawHumanHand(humanHand);
+        board.labelPart(humanHand, boneyard.getBoneyardSize());
     }
 
     @Override
