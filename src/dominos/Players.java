@@ -17,8 +17,6 @@ public class Players {
         computerHand = boneyard.handsForPlayer();
     }
 
-    public void addToPlayedDomino1(Dominos dominos) { playedDomino.add(dominos); }
-
     public int getBoneyardsize() { return boneyard.getBoneyardSize(); }
 
     public int getComputerHandSize() { return computerHand.size(); }

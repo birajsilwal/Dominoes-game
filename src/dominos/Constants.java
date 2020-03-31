@@ -2,6 +2,8 @@ package dominos;
 
 import javafx.scene.paint.Color;
 
+/* This class contains most of the constants in the program
+ * to make the code more cleaner */
 public interface Constants {
 
     // variables used in Display class
@@ -10,12 +12,12 @@ public interface Constants {
 
     // variables used in MainController class
     int borderPaneWidth = 900;
-    int borderPaneHeight = 630;
+    int borderPaneHeight = 680;
 //    int borderPaneHeight = 650;
 
     int rotateImageBy = -90;
     int rectangleHeight = 40;
-    int rectangleWeigth = 90;
+    int rectangleWeight = 90;
 
     /*custom colors used for better UI*/
     Color yellowOrange = Color.valueOf("#ffae42B3");

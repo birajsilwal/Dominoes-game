@@ -1,14 +1,12 @@
 package dominos;
 
-import javafx.event.EventHandler;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
 import static dominos.Constants.rectangleHeight;
-import static dominos.Constants.rectangleWeigth;
+import static dominos.Constants.rectangleWeight;
 
 public class DrawPlayedDomino extends Pane {
 
@@ -19,7 +17,7 @@ public class DrawPlayedDomino extends Pane {
         Image imagee = new Image(dominoNamee);
         rectangle1.setFill(new ImagePattern(imagee));
         rectangle1.setHeight(rectangleHeight);
-        rectangle1.setWidth(rectangleWeigth);
+        rectangle1.setWidth(rectangleWeight);
         getChildren().add(rectangle1);
         return rectangle1;
     }

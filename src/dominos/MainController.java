@@ -25,7 +25,7 @@ import static dominos.Constants.*;
 public class MainController extends Application implements EventHandler<ActionEvent> {
 
     private BorderPane borderPane;
-    private Board board = new Board();
+    private Board board;
 
 
     public static void main(String[] args) {
@@ -39,6 +39,7 @@ public class MainController extends Application implements EventHandler<ActionEv
 
     /* GUI starts from here */
     private void initGUI(Stage primaryStage) {
+        board = new Board(this);
         Display display = new Display();
 
         // Bottom item: horizontal part

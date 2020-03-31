@@ -3,6 +3,7 @@ package dominos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
+import sun.applet.Main;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,10 +14,12 @@ public class Board extends Pane {
     List<Dominos> humanHand = new ArrayList<>();
     FlowPane flowPane;
     int count = 0;
+    MainController mainController;
 
-    Board() {
+    Board(MainController mainController) {
         flowPane = new FlowPane();
         getChildren().addAll(flowPane);
+        this.mainController = mainController;
     }
 
     /**@param dominos is added to the arraylist */
@@ -26,8 +29,9 @@ public class Board extends Pane {
 
     public void updateGUI() {
         flowPane.getChildren().clear();
+//        playedDomino.add(new Dominos(1,1));
         for (Dominos dominos : playedDomino) {
-            flowPane.getChildren().addAll(new DrawDominoRectangle().setRectangle(dominos));
+            flowPane.getChildren().addAll(new DrawPlayedDomino().setRectangle(dominos));
         }
         int temp = ++count;
         String value = String.valueOf(temp);
@@ -42,7 +46,7 @@ public class Board extends Pane {
         humanHand = players.getHumanHand();
         for (int i = 0; i < 7; i++) {
             Dominos dominos = humanHand.get(i);
-            flowPane.getChildren().add(new DrawDominoRectangle().setRectangle(dominos));
+            flowPane.getChildren().add(new DrawDominoRectangle(mainController).setRectangle(dominos));
         }
         return flowPane;
     }
