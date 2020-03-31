@@ -21,6 +21,8 @@ public class Players {
 
     public int getComputerHandSize() { return computerHand.size(); }
 
+//    public int getComputerHandSize() { return computerHand.size(); }
+
     public List<Dominos> getComputerHand() { return computerHand; }
 
     public List<Dominos> getHumanHand() { return humanHandList; }

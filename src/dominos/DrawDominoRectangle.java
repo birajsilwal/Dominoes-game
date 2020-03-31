@@ -1,9 +1,10 @@
 package dominos;
 
-
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.ImagePattern;
+
+import java.util.List;
 
 import static dominos.Constants.*;
 
@@ -15,7 +16,7 @@ public class DrawDominoRectangle extends Pane {
         this.mainController = mainController;
     }
 
-    public Dominos setRectangle(Dominos dominos) {
+    public Dominos setRectangle(Dominos dominos, List<Dominos> humanHand) {
         String dominoName = String.format("dominoImages/%d-%d.png", dominos.getLeft(), dominos.getRight());
         Image image = new Image(dominoName);
         dominos.setFill(new ImagePattern(image));
@@ -25,12 +26,10 @@ public class DrawDominoRectangle extends Pane {
         getChildren().add(dominos);
 
         dominos.setOnMouseClicked(event -> {
-            System.out.println("clicked dddd");
-            System.out.println(dominos);
+            dominos.setVisible(false);
+            humanHand.remove(dominos);
             mainController.addPlayedDominoToBoard(dominos);
         });
-
         return dominos;
     }
-
 }

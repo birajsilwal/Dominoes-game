@@ -7,16 +7,11 @@ import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static dominos.Constants.*;
 
@@ -26,7 +21,6 @@ public class MainController extends Application implements EventHandler<ActionEv
 
     private BorderPane borderPane;
     private Board board;
-
 
     public static void main(String[] args) {
         launch(args);
@@ -55,7 +49,7 @@ public class MainController extends Application implements EventHandler<ActionEv
         flowPaneHumanHand.setPadding(new Insets(10, 5, 10, 5));
         flowPaneHumanHand.setBackground(new Background(new BackgroundFill(yellowOrange, CornerRadii.EMPTY, Insets.EMPTY)));
         humanHandString.setFont(Font.font(15));
-        flowPaneHumanHand = board.drawHumanHand(flowPaneHumanHand);
+        board.drawHumanHand();
 
         // Right item: displaying played dominos
         FlowPane flowPanePlayedDomino = new FlowPane(Orientation.VERTICAL, 0, 20);
@@ -67,17 +61,13 @@ public class MainController extends Application implements EventHandler<ActionEv
 
         // **********************************************
 
-        Label label = new Label("biraj");
-//        board.getChildren().add(label);
-//        flowPanePlayedDomino = board.updateGUI();
+        board.updateGUI();
 
         // main displaying stuff going on here
         borderPane = new BorderPane();
         borderPane.setCenter(board);
         borderPane.setLeft(flowPaneHumanHand);
-        borderPane.setBottom(hBox);
-
-        board.updateGUI();
+//        borderPane.setBottom(hBox);
 
         Scene scene = new Scene(borderPane, borderPaneWidth, borderPaneHeight);
         primaryStage.setTitle("Dominos Game");
@@ -87,7 +77,7 @@ public class MainController extends Application implements EventHandler<ActionEv
 
     public void addPlayedDominoToBoard(Dominos dominos) {
         board.insertDomino(dominos);
-        board.updateGUI();
+        board.drawPlayedDomino();
     }
 
     @Override

@@ -1,25 +1,42 @@
 package dominos;
 
+import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
+import javafx.scene.text.Text;
 import sun.applet.Main;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Board extends Pane {
+import static dominos.Constants.vBoxLabelSpacing;
+import static dominos.Constants.vBoxPadding;
 
-    List<Dominos> playedDomino = new ArrayList<>();
-    List<Dominos> humanHand = new ArrayList<>();
-    FlowPane flowPane;
-    int count = 0;
+public class Board extends GridPane {
+
+    List<Dominos> playedDomino;
+    List<Dominos> humanHand;
+    FlowPane flowPanePlayedDomino;
+    FlowPane flowPaneHumanHand;
+    VBox hBoxLabelPart;
     MainController mainController;
+    Display display;
+    Players players;
 
     Board(MainController mainController) {
-        flowPane = new FlowPane();
-        getChildren().addAll(flowPane);
+        flowPanePlayedDomino = new FlowPane();
+        flowPaneHumanHand = new FlowPane(Orientation.VERTICAL, 0, 20);
+        hBoxLabelPart = new VBox();
+        add(flowPanePlayedDomino, 3,2);
+        add(flowPaneHumanHand, 0,0);
+        add(hBoxLabelPart, 0,4);
         this.mainController = mainController;
+        display = new Display();
+        players = new Players();
+        playedDomino = new ArrayList<>();
+        humanHand = new ArrayList<>();
     }
 
     /**@param dominos is added to the arraylist */
@@ -27,27 +44,43 @@ public class Board extends Pane {
         playedDomino.add(dominos);
     }
 
-    public void updateGUI() {
-        flowPane.getChildren().clear();
-//        playedDomino.add(new Dominos(1,1));
+    public void drawPlayedDomino() {
+        flowPanePlayedDomino.getChildren().clear();
         for (Dominos dominos : playedDomino) {
-            flowPane.getChildren().addAll(new DrawPlayedDomino().setRectangle(dominos));
+            humanHand.remove(dominos);
+            flowPanePlayedDomino.getChildren().addAll(new DrawPlayedDomino().setRectangle(dominos));
         }
-        int temp = ++count;
-        String value = String.valueOf(temp);
-        Label label = new Label(value);
-        flowPane.getChildren().addAll(label);
-        System.out.println(temp);
-        System.out.println("updateGUI is executing");
     }
 
-    public FlowPane drawHumanHand(FlowPane flowPane) {
+    public void drawHumanHand() {
+        flowPaneHumanHand.getChildren().clear();
         Players players = new Players();
         humanHand = players.getHumanHand();
         for (int i = 0; i < 7; i++) {
             Dominos dominos = humanHand.get(i);
-            flowPane.getChildren().add(new DrawDominoRectangle(mainController).setRectangle(dominos));
+            flowPaneHumanHand.getChildren().add(new DrawDominoRectangle(mainController).setRectangle(dominos, humanHand));
         }
-        return flowPane;
+    }
+
+    /* this method contains label elements */
+    public void labelPart() {
+
+        String boneyardSize = String.valueOf(players.getBoneyardsize());
+        Text boneyardDominos = new Text("Boneyard contains " + boneyardSize + " dominos.");
+
+        String computerHandSize = String.valueOf(players.getComputerHandSize());
+        Text computerDomino = new Text("computer has " + computerHandSize + " dominos.");
+
+        String humanHandSize = String.valueOf(humanHand.size());
+        Text humanDomino = new Text("Human has " + humanHandSize + " dominos.");
+
+//        VBox vBox = new VBox(vBoxLabelSpacing, boneyardDominos, computerDomino);
+        hBoxLabelPart.getChildren().addAll(computerDomino, boneyardDominos, humanDomino);
+
+    }
+
+    public void updateGUI() {
+        drawPlayedDomino();
+        labelPart();
     }
 }
