@@ -51,17 +51,10 @@ public class MainController extends Application implements EventHandler<ActionEv
         humanHand = players.getHumanHand();
         computerHand = players.getComputerHand();
 
-
-        // Bottom item: horizontal part
-//        HBox hBox = new HBox(display.buttonDraw(), display.labelPart());
-//        hBox.setAlignment(Pos.CENTER);
-//        hBox.setBackground(new Background
-//                (new BackgroundFill(yellowGreen, CornerRadii.EMPTY, Insets.EMPTY)));
-
-
         board.drawHumanHand(humanHand);
         board.drawComputerHand(computerHand);
         board.updateGUI();
+        board.labelPart(boneyard.getBoneyardSize());
 
         // main displaying stuff going on here
         borderPane = new BorderPane();
@@ -69,11 +62,11 @@ public class MainController extends Application implements EventHandler<ActionEv
         ImageView imageView = new ImageView(image);
         imageView.setFitHeight(borderPaneHeight);
         imageView.setFitWidth(borderPaneWidth);
-//        borderPane.getChildren().addAll(imageView);
+        borderPane.getChildren().addAll(imageView);
         borderPane.setCenter(board);
 
         Scene scene = new Scene(borderPane, borderPaneWidth, borderPaneHeight);
-        primaryStage.setTitle("Dominos Game");
+        primaryStage.setTitle("Domino Game");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -83,7 +76,7 @@ public class MainController extends Application implements EventHandler<ActionEv
         board.drawPlayedDomino();
         board.drawHumanHand(humanHand);
         board.drawComputerHand(computerHand);
-        board.labelPart(humanHand, boneyard.getBoneyardSize());
+        board.labelPart(boneyard.getBoneyardSize());
     }
 
     @Override

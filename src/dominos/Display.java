@@ -15,7 +15,7 @@ import static dominos.Constants.*;
 
 /* this class is responsible for displaying element into the pane */
 public class Display {
-    private int fontSize = 15;
+    private int fontSize = 25;
 
     /* this method contains element for the bottom part of the GUI */
     public HBox buttonDraw() {
