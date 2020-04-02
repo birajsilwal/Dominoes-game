@@ -26,7 +26,6 @@ public class DrawDominoRectangle extends Pane {
         getChildren().add(dominos);
 
         dominos.setOnMouseClicked(event -> {
-//            dominos.setVisible(false);
             humanHand.remove(dominos);
             mainController.addPlayedDominoToBoard(dominos);
         });

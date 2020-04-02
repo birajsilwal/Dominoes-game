@@ -30,6 +30,7 @@ public class MainController extends Application implements EventHandler<ActionEv
     private Players players;
     private Boneyard boneyard;
     private List<Dominos> humanHand;
+    private List<Dominos> computerHand;
 
     public static void main(String[] args) {
         launch(args);
@@ -42,11 +43,13 @@ public class MainController extends Application implements EventHandler<ActionEv
 
     /* GUI starts from here */
     private void initGUI(Stage primaryStage) {
-        board = new Board(this);
         boneyard = new Boneyard();
-        players = new Players(boneyard.handsForPlayer(), boneyard.handsForPlayer);
+        players = new Players(boneyard.handsForPlayer(), boneyard.handsForPlayer());
+        board = new Board(this, players);
         humanHand = new ArrayList<>();
+        computerHand = new ArrayList<>();
         humanHand = players.getHumanHand();
+        computerHand = players.getComputerHand();
 
 
         // Bottom item: horizontal part
@@ -57,6 +60,7 @@ public class MainController extends Application implements EventHandler<ActionEv
 
 
         board.drawHumanHand(humanHand);
+        board.drawComputerHand(computerHand);
         board.updateGUI();
 
         // main displaying stuff going on here
@@ -78,6 +82,7 @@ public class MainController extends Application implements EventHandler<ActionEv
         board.insertDomino(dominos);
         board.drawPlayedDomino();
         board.drawHumanHand(humanHand);
+        board.drawComputerHand(computerHand);
         board.labelPart(humanHand, boneyard.getBoneyardSize());
     }
 

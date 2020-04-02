@@ -6,20 +6,19 @@ import java.util.Scanner;
 public class Players {
 
     private List<Dominos> humanHandList;
-    private List<Dominos> computerHand;
+    private List<Dominos> computerHandList;
     int input;
 
     public Players(List<Dominos> humanHandList, List<Dominos> computerHandList) {
         this.humanHandList = humanHandList;
-        this.computerHand = computerHandList;
+        this.computerHandList = computerHandList;
     }
 
-    public int getComputerHandSize() { return computerHand.size(); }
-
-    public List<Dominos> getComputerHand() { return computerHand; }
+    public int getComputerHandSize() { return computerHandList.size(); }
 
     public List<Dominos> getHumanHand() { return humanHandList; }
 
+    public List<Dominos> getComputerHand() { return computerHandList; }
 
 
 
@@ -42,7 +41,7 @@ public class Players {
 
     /* upon method call, computer flips the dominos */
     private void computerFlip(int i) {
-        computerHand.get(i).flipDomino();
+        computerHandList.get(i).flipDomino();
     }
 
 
@@ -64,80 +63,48 @@ public class Players {
 //    }
 
     /*this method have computer player instructions and cases*/
-/*    public void computerPlayer() {
-        System.out.print("Human's Tray: ");
-        System.out.println(humanHandList);
-        System.out.print("Computer's Tray: ");
-        System.out.println(computerHand);
-
-        computerCases();
-
-        System.out.println("Computer's Turn");
-        System.out.println("computer hand size: " + computerHand.size());
-        System.out.println("Played dominos: " + playedDomino + "\n");
-        System.out.println("==================================================");
-    }*/
-
-    /* this method have logic for different cases such as play, draw, quit for human player */
-/*    public void humanCases() {
-        Scanner scanner = new Scanner(System.in);
-        String input = scanner.nextLine();
-
-        switch (input) {
-            case "p":
-                System.out.println("Which domino?");
-                play();
-                break;
-            case "d":
-                System.out.println("Draw");
-                break;
-            case "q":
-                quit();
-                break;
-        }
-    }*/
+//    public void computerPlayer() {
+//        System.out.print("Human's Tray: ");
+//        System.out.println(humanHandList);
+//        System.out.print("Computer's Tray: ");
+//        System.out.println(computerHand);
+//
+//        computerCases();
+//
+//        System.out.println("Computer's Turn");
+//        System.out.println("computer hand size: " + computerHand.size());
+//        System.out.println("Played dominos: " + playedDomino + "\n");
+//        System.out.println("==================================================");
+//    }
 
     /* this method have all the logic for computer player
      * depending on the different situation, computer player chooses dominos tiles*/
-//    public void computerCases() {
-//        for (int i = 0; i < computerHand.size(); i++) {
-//            Dominos computerDomino = computerHand.get(i);
-//
-//            int tempLeft = computerDomino.getLeft();
-//            int tempRight = computerDomino.getRight();
-//            int sizeOfPlayedDomino = playedDomino.size();
-//
-//            if (playedDomino.get(sizeOfPlayedDomino-1).getRight() == tempLeft) {
-//                playedDomino.add(computerHand.remove(i));
-//                break;
-//            }
-//
-//            else if (playedDomino.get(sizeOfPlayedDomino-1).getRight() == tempRight) {
-//                computerFlip(i);
-//                playedDomino.add(computerHand.remove(i));
-//                break;
-//            }
-//
-//            else if (playedDomino.get(sizeOfPlayedDomino-1).getRight() != tempRight || playedDomino.get(sizeOfPlayedDomino-1).getRight() != tempLeft ) {
-//                if (tempRight == 0 || tempLeft == 0) {
-//                    playedDomino.add(computerHand.remove(i));
-//                    break;
-//                }
-//            }
-//        }
-//    }
+    public void computerCases(List<Dominos> playedDomino) {
+        for (int i = 0; i < computerHandList.size(); i++) {
+            Dominos computerDomino = computerHandList.get(i);
 
-    /* this method is to play the game */
-/*    public void play() {
-        System.out.println("Enter a number: ");
-        Scanner scanner = new Scanner(System.in);
-        input =  scanner.nextInt();
-        System.out.println("Playing " + humanHandList.get(input));
+            int tempLeft = computerDomino.getLeft();
+            int tempRight = computerDomino.getRight();
+            int sizeOfPlayedDomino = playedDomino.size();
 
-        flipOrNot();
+            if (playedDomino.get(sizeOfPlayedDomino-1).getRight() == tempLeft) {
+                playedDomino.add(computerHandList.remove(i));
+                break;
+            }
 
-        addToPlayedDomino(input);
-        System.out.println("Boneyard contains " + boneyard.getBoneyardSize() + " Dominos.");
-        System.out.println("Played dominos: " + playedDomino + "\n");
-    }*/
+            else if (playedDomino.get(sizeOfPlayedDomino-1).getRight() == tempRight) {
+                computerFlip(i);
+                playedDomino.add(computerHandList.remove(i));
+                break;
+            }
+
+            else if (playedDomino.get(sizeOfPlayedDomino-1).getRight() != tempRight || playedDomino.get(sizeOfPlayedDomino-1).getRight() != tempLeft ) {
+                if (tempRight == 0 || tempLeft == 0) {
+                    playedDomino.add(computerHandList.remove(i));
+                    break;
+                }
+            }
+        }
+    }
+
 }
