@@ -21,7 +21,7 @@ public class DrawDominoRectangle extends Pane {
         Image image = new Image(dominoName);
         dominos.setFill(new ImagePattern(image));
         dominos.setHeight(rectangleHeight);
-        dominos.setWidth(rectangleWeight);
+        dominos.setWidth(rectangleWidth);
 
         getChildren().add(dominos);
 

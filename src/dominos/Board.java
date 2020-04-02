@@ -4,38 +4,39 @@ import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static dominos.Constants.*;
 
-public class Board extends GridPane {
+public class Board extends BorderPane {
 
     MainController mainController;
-    FlowPane flowPanePlayedDomino;
+    FlowPane flowPanePlayedDominoTop;
     FlowPane flowPanePlayedDominoBottom;
     FlowPane flowPaneHumanHand;
     FlowPane flowPaneComputerHand;
     HBox hBoxLabelPart;
+    VBox playedDominoBoard;
     List<Dominos> playedDominoTop;
     List<Dominos> playedDominoBottom;
     Players players;
 
     Board(MainController mainController, Players players) {
-        flowPanePlayedDomino = new FlowPane();
+        flowPanePlayedDominoTop = new FlowPane();
         flowPanePlayedDominoBottom = new FlowPane();
-        flowPaneHumanHand = new FlowPane(Orientation.HORIZONTAL, 20, 5);
-        flowPaneComputerHand = new FlowPane(Orientation.HORIZONTAL, 20, 5);
+        flowPaneHumanHand = new FlowPane(Orientation.VERTICAL, 20, 20);
+        flowPaneComputerHand = new FlowPane(Orientation.VERTICAL, 20, 20);
         hBoxLabelPart = new HBox();
-        add(flowPaneHumanHand, 0, 0);
-        add(flowPaneComputerHand, 0, 1);
-        add(flowPanePlayedDomino,0, 2);
-        add(flowPanePlayedDominoBottom, 0, 3);
+        playedDominoBoard = new VBox();
+        this.setLeft(flowPaneHumanHand);
+        this.setRight(flowPaneComputerHand);
 //        this.setBottom(hBoxLabelPart);
+        playedDominoBoard.getChildren().addAll(flowPanePlayedDominoTop, flowPanePlayedDominoBottom);
+        this.setCenter(playedDominoBoard);
+
         this.mainController = mainController;
         this.players = players;
         playedDominoTop = new ArrayList<>();
@@ -43,38 +44,48 @@ public class Board extends GridPane {
     }
 
     /**@param dominos is added to the arraylist */
-    public void insertDomino (Dominos dominos) {
+    public void insertDomino(Dominos dominos) {
         playedDominoTop.add(dominos);
-        players.computerCases(playedDominoTop);
+        insertComputerDomino(dominos);
+    }
+
+    public void insertComputerDomino(Dominos dominos) {
+        playedDominoBottom.add(dominos);
+        players.computerCases(playedDominoBottom);
+        playedDominoBottom.remove(dominos);
     }
 
     /*this methods draws played domino into the flowpane */
     public void drawPlayedDomino() {
-        flowPanePlayedDomino.getChildren().clear();
-        flowPanePlayedDominoBottom.getChildren().clear();
-        flowPanePlayedDomino.setPadding(new Insets(50, 10, 10, 10));
-//        flowPanePlayedDominoBottom.setPadding(new Insets(120, 10, 80, 10));
-        flowPanePlayedDomino.setAlignment(Pos.CENTER);
-        flowPanePlayedDominoBottom.setAlignment(Pos.BOTTOM_LEFT);
+        flowPanePlayedDominoTop.getChildren().clear();
+        flowPanePlayedDominoTop.setPadding(new Insets(50, 10, 10, 10));
+        flowPanePlayedDominoTop.setAlignment(Pos.CENTER);
 
         for (Dominos dominos : playedDominoTop) {
-            flowPanePlayedDomino.getChildren().addAll(new DrawPlayedDomino().setRectangle(dominos));
+            flowPanePlayedDominoTop.getChildren().addAll(new DrawPlayedDomino().setRectangle(dominos));
         }
-        for (Dominos dominos : playedDominoTop) {
+        drawComputerPlayedDomino();
+    }
+
+    public void drawComputerPlayedDomino() {
+        flowPanePlayedDominoBottom.getChildren().clear();
+        flowPanePlayedDominoBottom.setPadding(new Insets(0, 0, 80, 110));
+        flowPanePlayedDominoBottom.setAlignment(Pos.CENTER);
+
+        for (Dominos dominos : playedDominoBottom) {
             flowPanePlayedDominoBottom.getChildren().addAll(new DrawPlayedDomino().setRectangle(dominos));
         }
     }
 
     public void drawComputerHand(List<Dominos> computerHand) {
         flowPaneComputerHand.getChildren().clear();
-        Text humanHandString = new Text("Computer's Hand");
-        humanHandString.setTextAlignment(TextAlignment.LEFT);
+        Text computerHandString = new Text("Computer's Hand");
         flowPaneComputerHand.setPadding(new Insets(10, 5, 10, 5));
-        flowPaneComputerHand.setBackground(new Background(new BackgroundFill(yellowOrange, CornerRadii.EMPTY, Insets.EMPTY)));
-        flowPaneComputerHand.setPrefWidth(borderPaneWidth);
-        flowPaneComputerHand.setPrefHeight(rectangleHeight + 20);
-        flowPaneComputerHand.setAlignment(Pos.CENTER);
-        flowPaneComputerHand.getChildren().add(humanHandString);
+        flowPaneComputerHand.setBackground(new Background(new BackgroundFill(yellowGreen, CornerRadii.EMPTY, Insets.EMPTY)));
+        flowPaneComputerHand.setPrefWidth(rectangleWidth + 20);
+        flowPaneComputerHand.setPrefHeight(borderPaneHeight);
+        flowPaneComputerHand.setAlignment(Pos.TOP_CENTER);
+        flowPaneComputerHand.getChildren().add(computerHandString);
         for (Dominos dominos : computerHand) {
             flowPaneComputerHand.getChildren().add(new DrawPlayedDomino().setRectangle(dominos));
         }
@@ -84,12 +95,11 @@ public class Board extends GridPane {
     public void drawHumanHand(List<Dominos> humanHand) {
         flowPaneHumanHand.getChildren().clear();
         Text humanHandString = new Text("Human's Hand");
-        humanHandString.setTextAlignment(TextAlignment.LEFT);
         flowPaneHumanHand.setPadding(new Insets(10, 5, 10, 5));
         flowPaneHumanHand.setBackground(new Background(new BackgroundFill(yellowOrange, CornerRadii.EMPTY, Insets.EMPTY)));
-        flowPaneHumanHand.setPrefWidth(borderPaneWidth);
-        flowPaneHumanHand.setPrefHeight(rectangleHeight + 20);
-        flowPaneHumanHand.setAlignment(Pos.CENTER);
+        flowPaneHumanHand.setPrefWidth(rectangleWidth + 20);
+        flowPaneHumanHand.setPrefHeight(borderPaneHeight);
+        flowPaneHumanHand.setAlignment(Pos.TOP_CENTER);
         flowPaneHumanHand.getChildren().add(humanHandString);
         for (Dominos dominos : humanHand) {
             flowPaneHumanHand.getChildren().add(new DrawDominoRectangle(mainController).setRectangle(dominos, humanHand));

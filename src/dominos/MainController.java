@@ -69,7 +69,7 @@ public class MainController extends Application implements EventHandler<ActionEv
         ImageView imageView = new ImageView(image);
         imageView.setFitHeight(borderPaneHeight);
         imageView.setFitWidth(borderPaneWidth);
-        borderPane.getChildren().addAll(imageView);
+//        borderPane.getChildren().addAll(imageView);
         borderPane.setCenter(board);
 
         Scene scene = new Scene(borderPane, borderPaneWidth, borderPaneHeight);

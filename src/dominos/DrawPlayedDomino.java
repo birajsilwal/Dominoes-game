@@ -15,8 +15,8 @@ public class DrawPlayedDomino extends Pane {
         String dominoNamee = String.format("dominoImages/%d-%d.png", dominoss.getLeft(), dominoss.getRight());
         Image imagee = new Image(dominoNamee);
         rectangle1.setFill(new ImagePattern(imagee));
-        rectangle1.setHeight(playedDominoRectangleHeight);
-        rectangle1.setWidth(playedDominoRectangleWidth);
+        rectangle1.setHeight(rectangleHeight);
+        rectangle1.setWidth(rectangleWidth);
         getChildren().add(rectangle1);
         return rectangle1;
     }

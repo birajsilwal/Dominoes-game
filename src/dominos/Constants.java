@@ -13,7 +13,10 @@ public interface Constants {
 
     int rotateImageBy = -90;
     int rectangleHeight = 50;
-    int rectangleWeight = 100;
+    int rectangleWidth = 100;
+
+    int rectangleHeightC = 50;
+    int rectangleWidthC = 100;
 
     int playedDominoRectangleHeight = 60;
     int playedDominoRectangleWidth = 110;
