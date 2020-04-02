@@ -20,8 +20,6 @@ public class Players {
 
     public List<Dominos> getComputerHand() { return computerHandList; }
 
-
-
     /* method to quit the game */
     public void quit() {
         System.out.println("Thank you for playing this game.");
@@ -43,39 +41,6 @@ public class Players {
     private void computerFlip(int i) {
         computerHandList.get(i).flipDomino();
     }
-
-
-
-    /*all the instructions and human player logic are in this method\
-     * different cases are used inside this method*/
-//    public void humanPlayer() {
-//        System.out.print("Human's Tray: ");
-//        System.out.println(humanHandList);
-//        System.out.print("Computer's Tray: ");
-//        System.out.println(computerHand);
-//        System.out.println("Human's Turn");
-//        System.out.println("[p] Play Domino");
-//        System.out.println("[d] Draw from boneyard");
-//        System.out.println("[q] Quit");
-//        humanCases();
-//        computerPlayer();
-//        humanPlayer();
-//    }
-
-    /*this method have computer player instructions and cases*/
-//    public void computerPlayer() {
-//        System.out.print("Human's Tray: ");
-//        System.out.println(humanHandList);
-//        System.out.print("Computer's Tray: ");
-//        System.out.println(computerHand);
-//
-//        computerCases();
-//
-//        System.out.println("Computer's Turn");
-//        System.out.println("computer hand size: " + computerHand.size());
-//        System.out.println("Played dominos: " + playedDomino + "\n");
-//        System.out.println("==================================================");
-//    }
 
     /* this method have all the logic for computer player
      * depending on the different situation, computer player chooses dominos tiles*/
